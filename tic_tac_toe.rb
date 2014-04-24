@@ -2,7 +2,7 @@
 
 require_relative 'lib/game'
 require_relative 'lib/board'
-require_relative 'lib/opponent'
+require_relative 'lib/computer'
 
 def display_board(board)
   #puts "#{board[0]} #{board[1]} #{board[2]}"
@@ -16,12 +16,12 @@ if __FILE__ == $PROGRAM_NAME
   inst = 'Please enter your move'
 
   puts inst
-  game.start
-  display_board(game.get_board)
+  puts game.start
+  display_board(game.get_display)
   ARGF.each do |line|
 
     puts game.play(line.to_i)
-    display_board(game.get_board)
+    display_board(game.get_display)
     puts inst
   end
 end

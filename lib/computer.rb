@@ -1,51 +1,48 @@
-class Opponent
-  def initialize board, ennemy_symbol
+class Computer
+  attr_reader :symbol
+  
+  def initialize board, player_symbol
     @board = board
-    @symbol = (ennemy_symbol == 'X') ? 'O' : 'X'
-    @ennemy_symbol = ennemy_symbol
+    @symbol = (player_symbol == 'X') ? 'O' : 'X'
+    @player_symbol = player_symbol
   end
 
   def play
-    move = win || block_win || do_fork || block_fork || center || opposite_corner || empty_square
-    @board.tick(move, @symbol)
+    move = win(@symbol) || block_win(@player_symbol) || do_fork(@symbol) || block_fork(@player_symbol) || center || opposite_corner || empty_square
+    @board.tick(move, @symbol) if move
   end
 
   private
 
-  def win
-    squares = detect_win(@board, @symbol)
-    squares[0]
+  def win symbol
+    squares = detect_wins(@board, symbol)
+    squares.first
   end
-
-  def block_win
-    squares = detect_win(@board, @ennemy_symbol)
-    squares[0]
-  end
-
-  def detect_win board, symbol
-    squares = []
+  
+  alias :block_win :win
+  
+  def detect_wins board, symbol
+    wins = []
     board.empty_squares.each do |location|
       board.tick(location, symbol)
-      squares << location if board.win?(location, symbol)
+      wins << location if board.win?(symbol)
       board.tick(location, nil)
     end
-    return squares
+    wins
   end
 
-  def do_fork
-    detect_fork(@symbol)
+  def do_fork symbol
+    detect_fork(symbol)
   end
 
-  def block_fork
-    detect_fork(@ennemy_symbol)
-  end
-
+  alias :block_fork :do_fork
+  
   def detect_fork symbol
     @board.empty_squares.each do |location|
       @board.tick(location, symbol)
-      squares = detect_win(@board, symbol)
+      wins = detect_wins(@board, symbol)
       @board.tick(location, nil)
-      return location if squares.size >= 2
+      return location if wins.size >= 2
     end
     nil
   end
@@ -55,16 +52,16 @@ class Opponent
   end
 
   def opposite_corner
-    if @board.square(8) == @ennemy_symbol
+    if @board.square(8) == @player_symbol
       square ||= 0 unless @board.square(0)
     end
-    if @board.square(2) == @ennemy_symbol
+    if @board.square(2) == @player_symbol
       square ||= 6 unless @board.square(6)
     end
-    if @board.square(6) == @ennemy_symbol
+    if @board.square(6) == @player_symbol
       square ||= 2 unless @board.square(2)
     end
-    if @board.square(0) == @ennemy_symbol
+    if @board.square(0) == @player_symbol
       square ||= 8 unless @board.square(8)
     end
     square

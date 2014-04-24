@@ -1,5 +1,3 @@
-require 'pry'
-
 class Board
   attr_reader :grid
 
@@ -7,15 +5,20 @@ class Board
     @grid = Array.new(9)
   end
 
+  alias :reset! :initialize
+  
   def tick(location, mark)
-    if mark
-      raise 'Forbidden move' if outside_grid?(location)
-      raise 'square not empty'  if square(location)
+    if mark && (outside_grid?(location) || square(location))
+      return nil
     end
     @grid[location] = mark
-    win?(location, mark)
+    return location
   end
 
+  def square(location)
+    @grid[location]
+  end
+  
   def empty_squares
     squares = []
     @grid.each_index do |location|
@@ -24,7 +27,7 @@ class Board
     squares
   end
 
-  def win?(location, mark)
+  def win?(mark)
     # Row
     return true if @grid[0] == mark && @grid[1] == mark && @grid[2] == mark
     return true if @grid[3] == mark && @grid[4] == mark && @grid[5] == mark
@@ -38,10 +41,10 @@ class Board
     return true if @grid[6] == mark && @grid[4] == mark && @grid[2] == mark
   end
 
-  def square(location)
-    @grid[location]
+  def draw?
+    empty_squares.size <= 0 ? true : false
   end
-
+  
   private
 
   def outside_grid?(location)

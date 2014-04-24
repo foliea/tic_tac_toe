@@ -1,16 +1,21 @@
 class Board
-  attr_reader :grid
+  GRID_SIZE = 3 * 3
 
   def initialize
-    @grid = Array.new(9)
+    @grid = Array.new(GRID_SIZE)
+    winning_possibilities
   end
 
-  def tick(location, mark)
-    if mark && (outside_grid?(location) || square(location))
-      return nil
-    end
+  def reset
+    @grid.map! { nil }
+  end
+
+  def move(location, mark)
     @grid[location] = mark
-    return location
+  end
+
+  def move_available?(location)
+    location >= 0 && location <= 8 && square(location).nil?
   end
 
   def square(location)
@@ -25,32 +30,34 @@ class Board
     squares
   end
 
-  def win?(mark)
-    # Row
-    return true if @grid[0] == mark && @grid[1] == mark && @grid[2] == mark
-    return true if @grid[3] == mark && @grid[4] == mark && @grid[5] == mark
-    return true if @grid[6] == mark && @grid[7] == mark && @grid[8] == mark
-    # Column
-    return true if @grid[0] == mark && @grid[3] == mark && @grid[6] == mark
-    return true if @grid[1] == mark && @grid[4] == mark && @grid[7] == mark
-    return true if @grid[2] == mark && @grid[5] == mark && @grid[8] == mark
-    # Diagonale
-    return true if @grid[0] == mark && @grid[4] == mark && @grid[8] == mark
-    return true if @grid[6] == mark && @grid[4] == mark && @grid[2] == mark
-    return false
+  def winner?
+    win?('X') || win?('O')
   end
 
   def draw?
-    empty_squares.size <= 0 ? true : false
+    winner? || empty_squares.size > 0 ? false : true
   end
 
+  def win?(symbol)
+    @possibilities.each do |possibility|
+      return true if possibility.all? do |index|
+        @grid[index] == symbol
+      end
+    end
+    false
+  end
+  
   def to_a
     @grid
   end
 
   private
 
-  def outside_grid?(location)
-    location < 0 || location > 8
+  def winning_possibilities
+    @possibilities = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[6,4,2]
+    ]
   end
 end

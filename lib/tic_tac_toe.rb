@@ -3,7 +3,6 @@
 require_relative 'game'
 require_relative 'board'
 require_relative 'player'
-require_relative 'human'
 require_relative 'computer'
 
 def display_square(board, location)
@@ -47,7 +46,7 @@ if __FILE__ == $PROGRAM_NAME
   start_game(game)
   ARGF.each do |line|
     move = line.to_i - 1
-    play_game(game, move) if (1..9).include?(move)
+    play_game(game, move) if (0..9).include?(move)
 
     puts INFOS
   end

@@ -11,13 +11,13 @@ class Game
     human_symbol = Random.rand(0..1) == 0 ? 'X' : 'O'
     computer_symbol = human_symbol == 'X' ? 'O' : 'X'
 
-    @started = true
-    @board = Board.new
-    @human = Human.new(@board, human_symbol, computer_symbol)
-    @computer = Computer.new(@board, computer_symbol, human_symbol)
+    @started   = true
+    @board     = Board.new
+    @human     = Player.new(@board, human_symbol, computer_symbol)
+    @computer  = Computer.new(@board, computer_symbol, human_symbol)
 
-    @computer.play if Random.rand(0..1) == 0
-    return { code: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
+    @computer.move if Random.rand(0..1) == 0
+    { code: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
   end
 
   def play(location)
@@ -25,19 +25,23 @@ class Game
     if !started?
       return { code: -1, message: 'You need to start a game first' }
     end
-    unless @human.play(location)
+
+    if @board.move_available?(location)
+      @human.move(location)
+    else
       return { code: -1, message: "This square isn't empty" }
     end
+    
     if status = detect_end(@human.symbol)
       @started = false
       return status
     end
-    @computer.play
+    @computer.move
     if status = detect_end(@computer.symbol)
       @started = false
       return status
     end
-    return { code: 0 }
+    { code: 0 }
   end
 
   def get_display
@@ -53,6 +57,6 @@ class Game
     if @board.draw?
       return { code: 1, message: 'It\'s a draw' }
     end
-    return nil
+    nil
   end
 end

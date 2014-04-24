@@ -1,7 +1,9 @@
-require_relative 'game_entity'
-
-class Player < GameEntity
-  def play(location)
-    @board.tick(location, @symbol)
+class Player
+  attr_reader :symbol
+  
+  def initialize(board, symbol, ennemy_symbol)
+    @board = board
+    @symbol = symbol
+    @ennemy_symbol = ennemy_symbol
   end
 end

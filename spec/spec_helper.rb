@@ -1,7 +1,9 @@
 require 'pry'
 require 'mocha'
-require 'board'
 require 'game'
+require 'board'
+require 'player'
+require 'computer'
 
 RSpec.configure do |config|
   config.mock_with :mocha

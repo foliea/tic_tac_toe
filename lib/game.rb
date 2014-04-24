@@ -2,23 +2,23 @@ class Game
   attr_reader :status
   
   def start
-    player_symbol = Random.rand(0..1) == 0 ? 'X' : 'O'
-    computer_symbol = player_symbol == 'X' ? 'O' : 'X'
+    human_symbol = Random.rand(0..1) == 0 ? 'X' : 'O'
+    computer_symbol = human_symbol == 'X' ? 'O' : 'X'
     
     @board = Board.new
-    @player = Player.new(@board, player_symbol, computer_symbol)
-    @computer = Computer.new(@board, computer_symbol, player_symbol)
+    @human = Human.new(@board, human_symbol, computer_symbol)
+    @computer = Computer.new(@board, computer_symbol, human_symbol)
     
     @computer.play if Random.rand(0..1) == 0
-    return { status: 0, message: "You are playing with '#{@player.symbol}'", symbol: @player.symbol }
+    return { status: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
   end
   
   def play(location)
-    move = @player.play(location)
+    move = @human.play(location)
     if move.nil?
       return { status: -1, message: "You can't tick square in #{location}" }
     end
-    if status = detect_end(@player.symbol)
+    if status = detect_end(@human.symbol)
       return status
     end
     @computer.play

@@ -1,6 +1,6 @@
-require_relative 'game_entity'
+require_relative 'human'
 
-class Computer < GameEntity
+class Computer < Player
   def play
     move = win(@symbol) || block_win(@ennemy_symbol) ||
            do_fork(@symbol) || block_fork(@ennemy_symbol) ||

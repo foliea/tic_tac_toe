@@ -1,8 +1,9 @@
 #!/usr/bin/ruby
 
-require_relative 'lib/game'
-require_relative 'lib/board'
-require_relative 'lib/computer'
+require_relative 'game'
+require_relative 'board'
+require_relative 'player'
+require_relative 'computer'
 
 def display_board(board)
   #puts "#{board[0]} #{board[1]} #{board[2]}"

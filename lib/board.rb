@@ -1,11 +1,10 @@
+require 'pry'
 class Board
   attr_reader :grid
-
+  
   def initialize
     @grid = Array.new(9)
   end
-
-  alias :reset! :initialize
   
   def tick(location, mark)
     if mark && (outside_grid?(location) || square(location))
@@ -14,7 +13,7 @@ class Board
     @grid[location] = mark
     return location
   end
-
+  
   def square(location)
     @grid[location]
   end
@@ -26,7 +25,7 @@ class Board
     end
     squares
   end
-
+  
   def win?(mark)
     # Row
     return true if @grid[0] == mark && @grid[1] == mark && @grid[2] == mark
@@ -39,14 +38,15 @@ class Board
     # Diagonale
     return true if @grid[0] == mark && @grid[4] == mark && @grid[8] == mark
     return true if @grid[6] == mark && @grid[4] == mark && @grid[2] == mark
+    return false
   end
-
+  
   def draw?
     empty_squares.size <= 0 ? true : false
   end
   
   private
-
+  
   def outside_grid?(location)
     location < 0 || location > 8
   end

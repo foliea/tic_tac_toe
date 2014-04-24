@@ -3,7 +3,6 @@ class Board
 
   def initialize
     @grid = Array.new(GRID_SIZE)
-    winning_possibilities
   end
 
   def reset
@@ -15,17 +14,17 @@ class Board
   end
 
   def move_available?(location)
-    location >= 0 && location <= 8 && square(location).nil?
+    location >= 0 && location <= 8 && @grid[location].nil?
   end
 
-  def square(location)
-    @grid[location]
+  def square_has_symbol?(location, symbol)
+    @grid[location] == symbol ? true : false
   end
 
   def empty_squares
     squares = []
     @grid.each_index do |location|
-      squares << location unless square(location)
+      squares << location if move_available?(location)
     end
     squares
   end
@@ -39,14 +38,14 @@ class Board
   end
 
   def win?(symbol)
-    @possibilities.each do |possibility|
+    winning_possibilities.each do |possibility|
       return true if possibility.all? do |index|
         @grid[index] == symbol
       end
     end
     false
   end
-  
+
   def to_a
     @grid
   end
@@ -54,7 +53,7 @@ class Board
   private
 
   def winning_possibilities
-    @possibilities = [
+    [
       [0,1,2],[3,4,5],[6,7,8],
       [0,3,6],[1,4,7],[2,5,8],
       [0,4,8],[6,4,2]

@@ -1,5 +1,6 @@
 class Game
   attr_reader :started
+  attr_reader :board
 
   alias :started? :started
 
@@ -31,7 +32,7 @@ class Game
     else
       return { code: -1, message: "This square isn't empty" }
     end
-    
+
     if status = detect_end(@human.symbol)
       @started = false
       return status
@@ -42,10 +43,6 @@ class Game
       return status
     end
     { code: 0 }
-  end
-
-  def get_display
-    @board.to_a
   end
 
   private

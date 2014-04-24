@@ -22,7 +22,7 @@ def start_game(game)
 
   puts "-- New Game Started --\n"
   puts "-- Notif: #{status[:message]} --\n"
-  display_board(game.get_display)
+  display_board(game.board.to_a)
   puts INFOS
 end
 
@@ -36,7 +36,7 @@ def play_game(game, move)
   puts "Warning: #{status[:message]}" if status[:code] == 1
   puts "Notif: #{status[:message]}" if status[:code] == 0
 
-  display_board(game.get_display)
+  display_board(game.board.to_a)
 end
 
 if __FILE__ == $PROGRAM_NAME

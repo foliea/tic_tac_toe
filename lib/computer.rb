@@ -7,8 +7,13 @@ class Computer < Player
   private
 
   def find_move
-    get_win(@symbol) || block_win(@ennemy_symbol) || get_fork(@symbol) || block_fork(@ennemy_symbol) ||
-    center || opposite_corner || empty_square
+    get_win(@symbol)            ||
+    block_win(@ennemy_symbol)   ||
+    get_fork(@symbol)           ||
+    block_fork(@ennemy_symbol)  ||
+    center                      ||
+    opposite_corner             ||
+    empty_square
   end
 
   def get_win symbol
@@ -45,36 +50,35 @@ class Computer < Player
   end
 
   def center
-    4 unless @board.square(4)
+    4 if @board.move_available?(4)
   end
 
   def opposite_corner
-    if @board.square(8) == @ennemy_symbol
-      square ||= 0 unless @board.square(0)
-    end
-    if @board.square(2) == @ennemy_symbol
-      square ||= 6 unless @board.square(6)
-    end
-    if @board.square(6) == @ennemy_symbol
-      square ||= 2 unless @board.square(2)
-    end
-    if @board.square(0) == @ennemy_symbol
-      square ||= 8 unless @board.square(8)
+    square = nil
+    opposite_corners.each do |c|
+      if @board.square_has_symbol?(corners.first, @ennemy_symbol)
+        square = corners.last if @board.move_available?(corners.last)
+      end
     end
     square
   end
 
   def empty_square
-    # empty corner
-    square ||= 0 unless @board.square(0)
-    square ||= 6 unless @board.square(6)
-    square ||= 2 unless @board.square(2)
-    square ||= 8 unless @board.square(8)
+    square = nil
+    corners.each { |corner| square ||= corner if @board.move_available?(corner) }
+    middles.each { |middle| square ||= middle if @board.move_available?(middle) }
+    square
+  end
 
-    # empty side
-    square ||= 1 unless @board.square(1)
-    square ||= 3 unless @board.square(3)
-    square ||= 5 unless @board.square(5)
-    square ||= 7 unless @board.square(7)
+  def corners
+    [0, 6, 2, 8]
+  end
+
+  def middles
+    [1, 3, 5, 7]
+  end
+
+  def opposite_corners
+    [ [0, 8], [2, 6], [6, 2], [8, 0] ]
   end
 end

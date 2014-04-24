@@ -1,8 +1,15 @@
 class Game
   def initialize
+    @symbol = 'X'
+  end
+
+  def start
     @board = Board.new
-    @symbol = randomize_symbol
     @opponent = Opponent.new(@board, @symbol)
+
+    if Random.rand(0..1) == 0
+      @opponent.play
+    end
   end
 
   def play(x, y)
@@ -18,21 +25,17 @@ class Game
       if @opponent.play
         return 'Opponent win'
       end
+
+      if @board.empty_squares.size == 0
+        return 'Draw'
+      end
     rescue Exception => e
       return e.message
     end
-    print
   end
 
-  def print
-    @board.grid.each do |row|
-      puts row.to_s
-    end
+  def get_board
+    @board.grid
   end
 
-  private
-
-  def randomize_symbol
-    'X'
-  end
 end

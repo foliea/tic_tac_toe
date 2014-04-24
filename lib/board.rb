@@ -10,7 +10,7 @@ class Board
   def tick(location, mark)
     if mark
       raise 'Forbidden move' if outside_grid?(location)
-      raise 'square not empty'  if square_ticked?(location)
+      raise 'square not empty'  if square(location)
     end
     @grid[location] = mark
     win?(location, mark)
@@ -19,7 +19,7 @@ class Board
   def empty_squares
     squares = []
     @grid.each_index do |location|
-      squares << location unless square_ticked?(location)
+      squares << location unless square(location)
     end
     squares
   end
@@ -38,7 +38,7 @@ class Board
     return true if @grid[6] == mark && @grid[4] == mark && @grid[2] == mark
   end
 
-  def square_ticked?(location)
+  def square(location)
     @grid[location]
   end
 

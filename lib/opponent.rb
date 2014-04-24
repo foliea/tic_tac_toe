@@ -51,38 +51,36 @@ class Opponent
   end
 
   def center
-    4 unless @board.square_ticked?(4)
+    4 unless @board.square(4)
   end
 
   def opposite_corner
-    if @board.square_ticked?(8) == @ennemy_symbol
-      square ||= 0 unless @board.square_ticked?(0)
+    if @board.square(8) == @ennemy_symbol
+      square ||= 0 unless @board.square(0)
     end
-    if @board.square_ticked?(2) == @ennemy_symbol
-      square ||= 6 unless @board.square_ticked?(6)
+    if @board.square(2) == @ennemy_symbol
+      square ||= 6 unless @board.square(6)
     end
-    if @board.square_ticked?(6) == @ennemy_symbol
-      square ||= 2 unless @board.square_ticked?(2)
+    if @board.square(6) == @ennemy_symbol
+      square ||= 2 unless @board.square(2)
     end
-    if @board.square_ticked?(0) == @ennemy_symbol
-      square ||= 8 unless @board.square_ticked?(8)
+    if @board.square(0) == @ennemy_symbol
+      square ||= 8 unless @board.square(8)
     end
     square
   end
 
   def empty_square
     # empty corner
-    square ||= 0 unless @board.square_ticked?(0)
-    square ||= 6 unless @board.square_ticked?(6)
-    square ||= 2 unless @board.square_ticked?(2)
-    square ||= 8 unless @board.square_ticked?(8)
+    square ||= 0 unless @board.square(0)
+    square ||= 6 unless @board.square(6)
+    square ||= 2 unless @board.square(2)
+    square ||= 8 unless @board.square(8)
 
     # empty side
-    square ||= 1 unless @board.square_ticked?(1)
-    square ||= 3 unless @board.square_ticked?(3)
-    square ||= 5 unless @board.square_ticked?(5)
-    square ||= 7 unless @board.square_ticked?(7)
-
-    square
+    square ||= 1 unless @board.square(1)
+    square ||= 3 unless @board.square(3)
+    square ||= 5 unless @board.square(5)
+    square ||= 7 unless @board.square(7)
   end
 end

@@ -12,9 +12,9 @@ class Game
     end
   end
 
-  def play(x, y)
+  def play(location)
     begin
-      if @board.tick(x, y, @symbol)
+      if @board.tick(location, @symbol)
         return 'You win'
       end
 

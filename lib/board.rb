@@ -1,46 +1,50 @@
+require 'pry'
+
 class Board
   attr_reader :grid
 
   def initialize
-    @grid = Array.new(3) { Array.new(3) }
+    @grid = Array.new(9)
   end
 
-  def tick(x, y, mark)
+  def tick(location, mark)
     if mark
-      raise 'Forbidden move' if outside_grid?(x, y)
-      raise 'square not empty'  if square_ticked?(x, y)
+      raise 'Forbidden move' if outside_grid?(location)
+      raise 'square not empty'  if square_ticked?(location)
     end
-    @grid[y][x] = mark
-    win?(x, y, mark)
+    @grid[location] = mark
+    win?(location, mark)
   end
 
   def empty_squares
     squares = []
-    @grid.each do |row|
-      y = @grid.find_index(row)
-      row.each_index do |x|
-        squares << [x, y] unless square_ticked?(x, y)
-      end
+    @grid.each_index do |location|
+      squares << location unless square_ticked?(location)
     end
     squares
   end
 
-  def win?(x, y, mark)
-    diagonal = (0..2).map { |index| @grid[index][index] }
-
-    return true if @grid[y].all? { |square| square == mark }
-    return true if @grid.all? { |row| row[x] == mark }
-    return true if diagonal.all? { |square| square == mark }
-    return true if mark == @grid[2][0] && mark == @grid[1][1] && mark == @grid[0][2]
+  def win?(location, mark)
+    # Row
+    return true if @grid[0] == mark && @grid[1] == mark && @grid[2] == mark
+    return true if @grid[3] == mark && @grid[4] == mark && @grid[5] == mark
+    return true if @grid[6] == mark && @grid[7] == mark && @grid[8] == mark
+    # Column
+    return true if @grid[0] == mark && @grid[3] == mark && @grid[6] == mark
+    return true if @grid[1] == mark && @grid[4] == mark && @grid[7] == mark
+    return true if @grid[2] == mark && @grid[5] == mark && @grid[8] == mark
+    # Diagonale
+    return true if @grid[0] == mark && @grid[4] == mark && @grid[8] == mark
+    return true if @grid[6] == mark && @grid[4] == mark && @grid[2] == mark
   end
 
-  def square_ticked?(x, y)
-    @grid[y][x]
+  def square_ticked?(location)
+    @grid[location]
   end
 
   private
 
-  def outside_grid?(x, y)
-    x < 0 || x > 2 || y < 0 || y > 2
+  def outside_grid?(location)
+    location < 0 || location > 8
   end
 end

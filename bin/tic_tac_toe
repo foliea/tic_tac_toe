@@ -1,9 +1,11 @@
 #!/usr/bin/ruby
 
-require_relative 'lib/game'
-require_relative 'lib/board'
-require_relative 'lib/player'
-require_relative 'lib/computer'
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'game'
+require 'board'
+require 'player'
+require 'computer'
 
 def display_square(board, location)
   board[location] || '.'

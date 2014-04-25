@@ -6,7 +6,7 @@ describe Board do
   it "should assign 9 squares" do
     subject.to_a.size.should be 9
   end
-  
+
   it "shouldn't move outside" do
     subject.move_available?(-1).should be_false
   end
@@ -27,14 +27,16 @@ describe Board do
   end
 
   it 'should detect if board is full with no winner' do
-    (0..8).each { |i| subject.move(i, 'X') }
+    [ 'X', 'O', 'X',
+      'O', 'O', 'X',
+      'X', 'X', 'O'].each.with_index do |symbol, index|
+      subject.move(index, symbol)
+    end
     subject.should be_draw
   end
 
   it "should detect winning in first colum" do
-    subject.move(0, 'X')
-    subject.move(3, 'X')
-    subject.move(6, 'X')
+    (0..3).each { |location| subject.move(location, 'X') }
     subject.win?('X').should be_true
   end
 end

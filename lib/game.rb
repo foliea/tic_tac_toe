@@ -38,12 +38,12 @@ class Game
     end
 
     if status = detect_end(@human.symbol)
-      @started = false
+      stop
       return status
     end
     @computer.move
     if status = detect_end(@computer.symbol)
-      @started = false
+      stop
       return status
     end
     { code: 0 }

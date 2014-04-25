@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-require_relative 'game'
-require_relative 'board'
-require_relative 'player'
-require_relative 'computer'
+require_relative 'lib/game'
+require_relative 'lib/board'
+require_relative 'lib/player'
+require_relative 'lib/computer'
 
 def display_square(board, location)
   board[location] || '.'
@@ -50,19 +50,23 @@ def display_game(game, move)
 end
 
 if __FILE__ == $PROGRAM_NAME
-  START = '-- Press enter to start a game --'
+  START = '-- Do you want to start a new game ? [y/n] --'
   INFOS = '-- Please enter your move (between 1 and 9) : --'
   game = Game.new
+
+  system("clear")
 
   puts START
 
   ARGF.each do |line|
-    if line.to_s == "ENTER\n"
+    if line.to_s == "y\n"
       puts 'lol'
       display_start(game)
     elsif game.started?
       move = line.to_i - 1
       display_game(game, move)
+    elsif line.to_s == "exit\n"
+      exit
     end
   end
 end

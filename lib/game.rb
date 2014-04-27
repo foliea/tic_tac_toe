@@ -5,19 +5,20 @@ class Game
   alias :started? :started
 
   def initialize
-    @started   = false
     @board     = Board.new
+    @human     = Player.new
+    @computer  = Computer.new
+    @started   = false
   end
 
   def start
-    board.reset
-    symbols = assign_symbols
+    symbols = get_symbols
 
-    @started   = true
-    @human     = Player.new(symbols.first, symbols.last)
-    @computer  = Computer.new(symbols.last, symbols.first)
-
-    @computer.move if Random.rand(0..1) == 0
+    @started = true
+    @board.reset
+    @human.set_symbols(symbols.first, symbols.last)
+    @computer.set_symbols(symbols.last, symbols.first)
+    @computer.move(@board) if computer_first?
     { code: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
   end
 
@@ -51,6 +52,10 @@ class Game
 
   private
 
+  def computer_first?
+    Random.rand(0..1) == 0
+  end
+
   def detect_end(symbol)
     if @board.winner?
       return { code: 1, message: "'#{symbol}' win the game", symbol: symbol }
@@ -61,7 +66,7 @@ class Game
     nil
   end
 
-  def assign_symbols
+  def get_symbols
     Random.rand(0..1) == 0 ? ['X','O'] : ['O','X']
   end
 

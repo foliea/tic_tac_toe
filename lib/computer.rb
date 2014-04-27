@@ -1,11 +1,11 @@
 class Computer < Player
-  def move board
+  def move(board)
     super(board, find_move(board))
   end
 
   private
 
-  def find_move board
+  def find_move(board)
     get_win(board, @symbol)            ||
     block_win(board, @ennemy_symbol)   ||
     get_fork(board, @symbol)           ||
@@ -15,14 +15,14 @@ class Computer < Player
     empty_square(board)
   end
 
-  def get_win board, symbol
+  def get_win(board, symbol)
     squares = detect_wins(board, symbol)
     squares.first
   end
 
   alias :block_win :get_win
 
-  def detect_wins board, symbol
+  def detect_wins(board, symbol)
     wins = []
     board.empty_squares.each do |location|
       board.move(location, symbol)
@@ -32,13 +32,13 @@ class Computer < Player
     wins
   end
 
-  def get_fork board, symbol
+  def get_fork(board, symbol)
     detect_fork(board, symbol)
   end
 
   alias :block_fork :get_fork
 
-  def detect_fork board, symbol
+  def detect_fork(board, symbol)
     board.empty_squares.each do |location|
       board.move(location, symbol)
       wins = detect_wins(board, symbol)
@@ -48,11 +48,11 @@ class Computer < Player
     nil
   end
 
-  def center board
+  def center(board)
     board.center if board.move_available?(board.center)
   end
 
-  def opposite_corner board
+  def opposite_corner(board)
     square = nil
     board.opposite_corners.each do |c|
       if board.square_has_symbol?(board.corners.first, @ennemy_symbol)
@@ -62,7 +62,7 @@ class Computer < Player
     square
   end
 
-  def empty_square board
+  def empty_square(board)
     square = nil
     board.corners.each { |corner| square ||= corner if board.move_available?(corner) }
     board.middles.each { |middle| square ||= middle if board.move_available?(middle) }

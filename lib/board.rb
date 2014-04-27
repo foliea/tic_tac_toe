@@ -39,9 +39,7 @@ class Board
 
   def win?(symbol)
     winning_possibilities.each do |possibility|
-      return true if possibility.all? do |index|
-        @grid[index] == symbol
-      end
+      return true if possibility.all? { |index| @grid[index] == symbol }
     end
     false
   end

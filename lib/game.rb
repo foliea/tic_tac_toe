@@ -14,8 +14,8 @@ class Game
     symbols = assign_symbols
 
     @started   = true
-    @human     = Player.new(@board, symbols.first, symbols.last)
-    @computer  = Computer.new(@board, symbols.last, symbols.first)
+    @human     = Player.new(symbols.first, symbols.last)
+    @computer  = Computer.new(symbols.last, symbols.first)
 
     @computer.move if Random.rand(0..1) == 0
     { code: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
@@ -32,7 +32,7 @@ class Game
     end
 
     if @board.move_available?(location)
-      @human.move(location)
+      @human.move(@board, location)
     else
       return { code: -1, message: "This square isn't empty" }
     end
@@ -41,7 +41,7 @@ class Game
       stop
       return status
     end
-    @computer.move
+    @computer.move(@board)
     if status = detect_end(@computer.symbol)
       stop
       return status

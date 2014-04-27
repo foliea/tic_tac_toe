@@ -1,8 +1,8 @@
 class Board
-  GRID_SIZE = 3 * 3
+  SIZE = 3 * 3
 
   def initialize
-    @grid = Array.new(GRID_SIZE)
+    @grid = Array.new(SIZE)
   end
 
   def reset
@@ -48,6 +48,22 @@ class Board
 
   def to_a
     @grid
+  end
+
+  def center
+    4
+  end
+
+  def corners
+    [0, 6, 2, 8]
+  end
+
+  def middles
+    [1, 3, 5, 7]
+  end
+
+  def opposite_corners
+    [ [0, 8], [2, 6], [6, 2], [8, 0] ]
   end
 
   private

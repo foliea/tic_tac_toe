@@ -8,7 +8,6 @@ class Game
     @board     = Board.new
     @human     = Player.new
     @computer  = Computer.new
-    @started   = false
   end
 
   def start
@@ -19,7 +18,7 @@ class Game
     @human.set_symbols(symbols.first, symbols.last)
     @computer.set_symbols(symbols.last, symbols.first)
     @computer.move(@board) if computer_first?
-    { code: 0, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
+    { code: ReturnCodes::NEW_GAME, message: "You are playing with '#{@human.symbol}'", symbol: @human.symbol }
   end
 
   def stop
@@ -29,13 +28,13 @@ class Game
   def play(location)
 
     if !started?
-      return { code: -1, message: 'You need to start a game first' }
+      return { code: ReturnCodes::GAME_NOT_STARTED, message: 'You need to start a game first' }
     end
 
     if @board.move_available?(location)
       @human.move(@board, location)
     else
-      return { code: -1, message: "This square isn't empty" }
+      return { code: ReturnCodes::SQUARE_NOT_AVAILABLE, message: "This square isn't available" }
     end
 
     if status = detect_end(@human.symbol)
@@ -52,18 +51,18 @@ class Game
 
   private
 
-  def computer_first?
-    Random.rand(0..1) == 0
-  end
-
   def detect_end(symbol)
     if @board.winner?
-      return { code: 1, message: "'#{symbol}' win the game", symbol: symbol }
+      return { code: ReturnCodes::WIN, message: "'#{symbol}' win the game", symbol: symbol }
     end
     if @board.draw?
-      return { code: 1, message: 'It\'s a draw' }
+      return { code: ReturnCodes::DRAW, message: 'It\'s a draw' }
     end
     nil
+  end
+
+  def computer_first?
+    Random.rand(0..1) == 0
   end
 
   def get_symbols

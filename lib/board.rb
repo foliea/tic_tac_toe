@@ -14,7 +14,7 @@ class Board
   end
 
   def move_available?(location)
-    location >= 0 && location <= 8 && @grid[location].nil?
+    location >= 0 && location < SIZE && @grid[location].nil?
   end
 
   def square_has_symbol?(location, symbol)

@@ -24,28 +24,24 @@ module ConsoleDisplay
   end
 
   def display_status(status)
-    case status[:code]
-    when -1
-      "-- Error: #{status[:message]} --\n"
-    when 0
-      "-- Notif: #{status[:message]} --\n"
-    when 1
-      "-- Warning: #{status[:message]} --\n"
+    if status[:code] == ReturnCodes::GAME_NOT_STARTED ||
+       status[:code] == ReturnCodes::SQUARE_NOT_AVAILABLE
+      puts "-- Error: #{status[:message]} --"
+    else
+      puts "-- #{status[:message]} --\n"
     end
   end
 
-  def display_start(board, status)
-    system("clear")
-    puts "-- New Game Started --\n"
-    puts "-- Notif: #{status[:message]} --\n"
+  def display_start(board)
+    system('clear')
+    puts "-- New Game Started --"
     display_board(board.to_a)
   end
 
 
-  def display_game(board, status)
-    system("clear")
-    puts "----------------------\n"
-    puts display_status(status)
+  def display_game(board)
+    system('clear')
+    puts "----------------------"
     display_board(board.to_a)
   end
 

@@ -7,7 +7,7 @@ describe Board do
   let(:blank_symbol) { Board::BLANK_SYMBOL }
 
   it 'should assign 9 squares' do
-    expect(board.to_a.size).to be 9
+    expect(board.to_a.size).to eq(Board::SIZE)
   end
 
   it "shouldn't allow outside move" do
@@ -26,6 +26,11 @@ describe Board do
 
   it 'should move on empty square' do
     expect(board.move(0, x_symbol)).to_not be_nil
+  end
+
+  it 'should reset' do
+    board.reset
+    expect(board.empty_squares.size).to eq(Board::SIZE)
   end
 
   it 'should decrease empty squares' do

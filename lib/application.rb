@@ -8,24 +8,20 @@ require 'console_display'
 class Application
 
   def initialize
-    @game = Game.new
+    @player_one = Player.new
+    @player_two = Computer.new
+    @game = Game.new(@player_one, @player_two)
   end
 
   def launch
-    while(42)
-      if @game.started?
-        move = ConsoleDisplay.ask_for_move
-        status = @game.play(move)
-        ConsoleDisplay.display_game(@game.board)
-        ConsoleDisplay.display_status(status)
-      else
-        answer = ConsoleDisplay.ask_new_game
-        if answer == 'y'
-          status = @game.start
-          ConsoleDisplay.display_start(@game.board)
-          ConsoleDisplay.display_status(status)
-        end
-      end
+    answer = ConsoleDisplay.ask_new_game
+    if answer == 'y'
+      status = @game.start
+      ConsoleDisplay.print_start(@game.board)
+    end
+    while @game.started?
+      status = @game.play
+      ConsoleDisplay.print_game(@game.board)
     end
   end
 

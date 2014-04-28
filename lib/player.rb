@@ -1,14 +1,13 @@
 class Player
-  attr_reader :symbol
-  attr_reader :ennemy_symbol
-
-  def set_symbols(symbol, ennemy_symbol)
-    @symbol        = symbol
-    @ennemy_symbol = ennemy_symbol
+  attr_accessor :symbol
+  
+  def initialize find_next_location
+    @find_next_location = find_next_location
   end
-
-  def move(board, location = nil)
-    board.move(location, @symbol) if location
+  
+  def move(board, ennemy_symbol)
+    next_location = @find_next_location(board, ennemy_symbol)
+    board.move(next_location, @symbol)
   end
-
+  
 end

@@ -1,24 +1,31 @@
 class Board
   SIZE = 3 * 3
-
+  X_SYMBOL = 'X'.freeze
+  O_SYMBOL = 'O'.freeze
+  BLANK_SYMBOL = nil
+  
   def initialize
-    @grid = Array.new(SIZE)
+    @grid = Array.new(SIZE, BLANK_SYMBOL)
   end
 
   def reset
-    @grid.map! { nil }
+    @grid.map! { BLANK_SYMBOL }
   end
 
   def move(location, mark)
     @grid[location] = mark
   end
+  
+  def undo_move(location)
+    @grid[location] = BLANK_SYMBOL
+  end
 
   def move_available?(location)
-    location >= 0 && location < SIZE && @grid[location].nil?
+    location >= 0 && location < SIZE && @grid[location] == BLANK_SYMBOL
   end
 
   def square_has_symbol?(location, symbol)
-    @grid[location] == symbol ? true : false
+    @grid[location] == symbol
   end
 
   def empty_squares
@@ -30,11 +37,11 @@ class Board
   end
 
   def winner?
-    win?('X') || win?('O')
+    win?(X_SYMBOL) || win?(O_SYMBOL)
   end
 
   def draw?
-    winner? || empty_squares.size > 0 ? false : true
+    !winner? && empty_squares.size <= 0
   end
 
   def win?(symbol)

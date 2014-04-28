@@ -1,11 +1,4 @@
-require 'pry'
-require 'mocha'
-require 'game'
-require 'board'
-require 'player'
-require 'computer'
-require 'human'
-require 'input_helper'
+Dir["./lib/*.rb"].each { |file| require file }
 
 RSpec.configure do |config|
   config.mock_with :mocha

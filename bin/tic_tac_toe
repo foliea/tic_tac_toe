@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
-require 'application_controller'
+require 'application'
 
 if __FILE__ == $PROGRAM_NAME
-  application = ConsoleApplication.new
+  application = Application.new
   application.launch
 end

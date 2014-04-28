@@ -3,7 +3,7 @@ class Board
   X_SYMBOL = 'X'.freeze
   O_SYMBOL = 'O'.freeze
   BLANK_SYMBOL = nil
-  
+
   def initialize
     @grid = Array.new(SIZE, BLANK_SYMBOL)
   end
@@ -15,7 +15,7 @@ class Board
   def move(location, mark)
     @grid[location] = mark if move_available?(location)
   end
-  
+
   def undo_move(location)
     @grid[location] = BLANK_SYMBOL
   end
@@ -45,8 +45,8 @@ class Board
   end
 
   def win?(symbol)
-    winning_possibilities.each do |possibility|
-      return true if possibility.all? { |index| @grid[index] == symbol }
+    winning_patterns.each do |pattern|
+      return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false
   end
@@ -73,7 +73,7 @@ class Board
 
   private
 
-  def winning_possibilities
+  def winning_patterns
     [
       [0,1,2],[3,4,5],[6,7,8],
       [0,3,6],[1,4,7],[2,5,8],

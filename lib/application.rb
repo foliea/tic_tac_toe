@@ -6,7 +6,7 @@ require 'game_status'
 require 'input_helper'
 require 'output_helper'
 
-class ConsoleApplication
+class Application
 
   def initialize
     @game = Game.new

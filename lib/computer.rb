@@ -1,10 +1,12 @@
+require 'player'
+
 class Computer < Player
   attr_accessor :symbol
 
   def move(board, location = nil)
     ennemy_symbol = find_ennemy_symbol
-    next_location = find_next_location(board, ennemy_symbol)
-    super(board, next_location)
+    location = find_next_location(board, ennemy_symbol)
+    super(board, location)
   end
 
   private

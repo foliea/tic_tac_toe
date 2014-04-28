@@ -1,16 +1,17 @@
 module OutputHelper
   extend self
 
-  def print_square(board, location)
+  def get_square(board, location)
     board[location] || '.'
   end
 
   def print_board(board, output_stream = $stdout)
-    output_stream.puts " #{print_square(board, 0)} | #{print_square(board, 1)} | #{print_square(board, 2)}\n" +
-         "-----------\n" +
-         " #{print_square(board, 3)} | #{print_square(board, 4)} | #{print_square(board, 5)}\n" +
-         "-----------\n" +
-         " #{print_square(board, 6)} | #{print_square(board, 7)} | #{print_square(board, 8)}\n"
+    board = " #{get_square(board, 0)} | #{get_square(board, 1)} | #{get_square(board, 2)}\n" +
+            "-----------\n" +
+            " #{get_square(board, 3)} | #{get_square(board, 4)} | #{get_square(board, 5)}\n" +
+            "-----------\n" +
+            " #{get_square(board, 6)} | #{get_square(board, 7)} | #{get_square(board, 8)}\n"
+    output_stream.puts board
   end
 
   def print_status(status, output_stream = $stdout)
@@ -27,14 +28,14 @@ module OutputHelper
   def print_start(board, output_stream = $stdout)
     system('clear')
     output_stream.puts "-- New Game Started --"
-    print_board(board.to_a)
+    print_board(board.to_a, output_stream)
   end
 
 
   def print_game(board, output_stream = $stdout)
     system('clear')
     output_stream.puts "----------------------"
-    print_board(board.to_a)
+    print_board(board.to_a, output_stream)
   end
 
 end

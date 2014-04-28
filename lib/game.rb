@@ -3,10 +3,10 @@ class Game
 
   alias :started? :started
 
-  def initialize(player_one, player_two)
+  def initialize
     @board      = Board.new
-    @player_one = player_one
-    @player_two = player_two
+    @player_one = Human.new(InputHelper)
+    @player_two = Computer.new
   end
 
   def start
@@ -26,12 +26,19 @@ class Game
   end
 
   def play
-    return ReturnCodes::GAME_NOT_STARTED unless started?
-    #return ReturnCodes::SQUARE_NOT_AVAILABLE unless @board.move_available?(location)
+    return GameStatus::NOT_STARTED unless started?
+
+    if over?
+      stop
+      return GameStatus::OVER
+    end
     
-    @current_player.move(@board, @other_player.symbol)
+    if @current_player.move(@board, @other_player.symbol).nil?
+      return GameStatus::SQUARE_NOT_AVAILABLE
+    end
+    
     swap_players
-    stop if over?
+    return GameStatus::OK
   end
   
   def over?

@@ -13,7 +13,7 @@ class Board
   end
 
   def move(location, mark)
-    @grid[location] = mark
+    @grid[location] = mark if move_available?(location)
   end
   
   def undo_move(location)
@@ -21,7 +21,7 @@ class Board
   end
 
   def move_available?(location)
-    location >= 0 && location < SIZE && @grid[location] == BLANK_SYMBOL
+    location && location >= 0 && location < SIZE && @grid[location] == BLANK_SYMBOL
   end
 
   def square_has_symbol?(location, symbol)

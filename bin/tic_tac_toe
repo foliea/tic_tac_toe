@@ -5,6 +5,6 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'application_controller'
 
 if __FILE__ == $PROGRAM_NAME
-  application_controller = ApplicationController.new
-  application_controller.launch
+  application = ConsoleApplication.new
+  application.launch
 end

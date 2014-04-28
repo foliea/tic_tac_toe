@@ -1,23 +1,28 @@
-class Computer
+class Computer < Player
   attr_accessor :symbol
-  
-  def move(board, ennemy_symbol)
+
+  def move(board, location = nil)
+    ennemy_symbol = find_ennemy_symbol
     next_location = find_next_location(board, ennemy_symbol)
-    board.move(next_location, @symbol)
+    super(board, next_location)
   end
-  
+
   private
-  
+
+  def find_ennemy_symbol
+    (@symbol == Board::X_SYMBOL) ? Board::O_SYMBOL : Board::X_SYMBOL
+  end
+
   def find_next_location(board, ennemy_symbol)
     get_win(board, @symbol)            ||
-    block_win(board, ennemy_symbol)   ||
+    block_win(board, ennemy_symbol)    ||
     get_fork(board, @symbol)           ||
-    block_fork(board, ennemy_symbol)  ||
+    block_fork(board, ennemy_symbol)   ||
     center(board)                      ||
     opposite_corner(board)             ||
     empty_square(board)
   end
- 
+
   def get_win(board, symbol)
     squares = get_wins_location(board, symbol)
     squares.first

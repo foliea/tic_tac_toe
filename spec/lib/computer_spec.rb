@@ -56,9 +56,9 @@ describe Computer do
   end
 
   it 'should take empty square' do
-    [ x_symbol, o_symbol, x_symbol,
+    [ x_symbol,     o_symbol, x_symbol,
       blank_symbol, o_symbol, x_symbol,
-      o_symbol, x_symbol, o_symbol].each.with_index do |symbol, index|
+      o_symbol,     x_symbol, o_symbol].each.with_index do |symbol, index|
       board.move(index, symbol)
     end
     expect(computer.find_next_location(board, o_symbol)).to eq(3)

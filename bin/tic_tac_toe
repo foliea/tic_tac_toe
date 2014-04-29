@@ -5,6 +5,4 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'application'
 
 if __FILE__ == $PROGRAM_NAME
-  application = Application.new
-  application.launch
 end

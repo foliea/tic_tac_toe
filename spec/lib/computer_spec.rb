@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Computer do
-  let(:x_symbol) { Board::X_SYMBOL }
-  let(:o_symbol) { Board::O_SYMBOL }
-  let(:board)    { Board.new }
-  let(:computer) { Computer.new(x_symbol) }
+  let(:x_symbol)     { Board::X_SYMBOL }
+  let(:o_symbol)     { Board::O_SYMBOL }
+  let(:blank_symbol) { Board::BLANK_SYMBOL }
+  let(:board)        { Board.new }
+  let(:computer)     { Computer.new(x_symbol) }
 
   it 'should have symbol' do
     expect(computer.symbol).to_not be_nil
@@ -52,5 +53,14 @@ describe Computer do
     board.move(4, x_symbol)
     board.move(0, o_symbol)
     expect(computer.find_next_location(board, o_symbol)).to eq(8)
+  end
+
+  it 'should take empty square' do
+    [ x_symbol, o_symbol, x_symbol,
+      blank_symbol, o_symbol, x_symbol,
+      o_symbol, x_symbol, o_symbol].each.with_index do |symbol, index|
+      board.move(index, symbol)
+    end
+    expect(computer.find_next_location(board, o_symbol)).to eq(3)
   end
 end

@@ -10,7 +10,7 @@ class Human < Player
 
   def move(board, ennemy_symbol)
     next_location = find_next_location
-    board.move(next_location, @symbol)
+    super(board, next_location)
   end
 
   def find_next_location

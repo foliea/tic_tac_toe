@@ -3,7 +3,7 @@ require 'player'
 class Computer < Player
   attr_accessor :symbol
 
-  def move(board, location = nil)
+  def move(board)
     ennemy_symbol = find_ennemy_symbol
     location = find_next_location(board, ennemy_symbol)
     super(board, location)

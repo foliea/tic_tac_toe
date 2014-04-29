@@ -8,7 +8,7 @@ class Human < Player
     super(symbol)
   end
 
-  def move(board, ennemy_symbol)
+  def move(board)
     next_location = find_next_location
     super(board, next_location)
   end

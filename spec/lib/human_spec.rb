@@ -15,6 +15,6 @@ describe Human do
 
   it 'should move after finding location' do
     human.stubs(:find_next_location).returns(1)
-    expect(human.move(board, nil)).to_not be_nil
+    expect(human.move(board)).to_not be_nil
   end
 end

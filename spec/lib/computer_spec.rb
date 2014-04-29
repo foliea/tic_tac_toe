@@ -18,7 +18,7 @@ describe Computer do
   it 'should move after finding ennemy symbol and location' do
     computer.stubs(:find_ennemy_symbol).returns(o_symbol)
     computer.stubs(:find_next_location).returns(1)
-    expect(computer.move(board, nil)).to_not be_nil
+    expect(computer.move(board)).to_not be_nil
   end
 
   it 'should find winning location' do

@@ -36,12 +36,8 @@ class Board
     squares
   end
 
-  def winner?
-    win?(X_SYMBOL) || win?(O_SYMBOL)
-  end
-
   def draw?
-    !winner? && empty_squares.size <= 0
+    !win?(X_SYMBOL) && !win?(O_SYMBOL) && empty_squares.size <= 0
   end
 
   def win?(symbol)

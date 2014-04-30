@@ -3,10 +3,10 @@ class Game
 
   alias :started? :started
 
-  def initialize(player_one, player_two)
+  def initialize(board, player_one, player_two)
     @player_one = player_one
     @player_two = player_two
-    @board      = Board.new
+    @board      = board
   end
 
   def start

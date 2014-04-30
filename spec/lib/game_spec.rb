@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Game do
-  let(:player_one) { Computer.new(Parameters::X_SYMBOL) }
-  let(:player_two) { Computer.new(Parameters::O_SYMBOL) }
   let(:x_symbol)   { Parameters::X_SYMBOL }
-  let(:game)       { Game.new(player_one, player_two) }
+  let(:player_one) { Computer.new(x_symbol) }
+  let(:player_two) { Computer.new(x_symbol) }
+  let(:board)      { Board.new }
+  let(:game)       { Game.new(board, player_one, player_two) }
 
   it 'should have player one' do
     expect(game.player_one).to_not be_nil

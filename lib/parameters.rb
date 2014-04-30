@@ -2,7 +2,7 @@ module Parameters
 
   X_SYMBOL = 'X'.freeze
   O_SYMBOL = 'O'.freeze
-  BLANK_SYMBOL = nil
+  BLANK_SYMBOL = nil.freeze
 
   BOARD_SIZE = 3 * 3
 

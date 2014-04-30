@@ -53,13 +53,12 @@ describe Game do
 
   it 'should stop if winner or draw' do
     game.stubs(:winner).returns(x_symbol)
-    game.start
     game.play
     expect(game.started?).to be_false
   end
 
   it 'should swap player between each call to play' do
-    game.start
+    game.stubs(:started?).returns(true)
     game.play
     expect(game.player_two).to eq(player_one)
   end

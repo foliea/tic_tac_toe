@@ -4,9 +4,9 @@ class Game
   alias :started? :started
 
   def initialize(board, player_one, player_two)
+    @board      = board
     @player_one = player_one
     @player_two = player_two
-    @board      = board
   end
 
   def start
@@ -26,10 +26,10 @@ class Game
   end
 
   def winner
-    return Parameters::X_SYMBOL if @board.win?(Parameters::X_SYMBOL)
-    return Parameters::O_SYMBOL if @board.win?(Parameters::O_SYMBOL)
-    return -1 if @board.draw?
-    return 0
+    return Parameters::X_SYMBOL_WIN if @board.win?(Parameters::X_SYMBOL)
+    return Parameters::O_SYMBOL_WIN if @board.win?(Parameters::O_SYMBOL)
+    return Parameters::DRAW         if @board.draw?
+    return Parameters::GAME_NOT_FINISH
   end
 
   def switch_players

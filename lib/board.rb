@@ -18,7 +18,7 @@ class Board
   end
 
   def move_available?(location)
-    location && location >= 0 && location < Parameters::BOARD_SIZE && @grid[location] == Parameters::BLANK_SYMBOL
+    location && location >= 0 && location < @grid.size && @grid[location] == Parameters::BLANK_SYMBOL
   end
 
   def square_has_symbol?(location, symbol)

@@ -39,16 +39,16 @@ describe Game do
 
   it 'should return winner' do
     game.board.stubs(:win?).returns(x_symbol)
-    expect(game.winner).to eq(x_symbol)
+    expect(game.winner).to eq(Parameters::X_SYMBOL_WIN)
   end
 
   it 'should return -1 if draw' do
     game.board.stubs(:draw?).returns(true)
-    expect(game.winner).to eq(-1)
+    expect(game.winner).to eq(Parameters::DRAW)
   end
 
-  it 'should return 0 if not over' do
-    expect(game.winner).to eq(0)
+  it 'should return not finish if not over' do
+    expect(game.winner).to eq(Parameters::GAME_NOT_FINISH)
   end
 
   it 'should stop if winner or draw' do

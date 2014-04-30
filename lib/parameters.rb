@@ -18,4 +18,8 @@ module Parameters
     [0,4,8],[6,4,2]
   ].freeze
 
+  GAME_NOT_FINISH = 0.freeze
+  DRAW = -1.freeze
+  X_SYMBOL_WIN = 1.freeze
+  O_SYMBOL_WIN = 2.freeze
 end

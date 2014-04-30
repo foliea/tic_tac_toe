@@ -37,7 +37,7 @@ class Board
   end
 
   def win?(symbol)
-    Parameters.winning_patterns.each do |pattern|
+    Parameters::WINNING_PATTERNS.each do |pattern|
       return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false

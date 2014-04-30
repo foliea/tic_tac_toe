@@ -1,5 +1,6 @@
 class Board
-
+  attr_accessor :grid
+  
   def initialize
     @grid = Array.new(Parameters::BOARD_SIZE, Parameters::BLANK_SYMBOL)
   end

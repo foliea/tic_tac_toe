@@ -8,7 +8,7 @@ describe Board do
   let(:board_size)   { Parameters::BOARD_SIZE }
 
   it 'should assign 9 squares' do
-    expect(board.to_a.size).to eq(board_size)
+    expect(board.grid.size).to eq(board_size)
   end
 
   it "shouldn't allow outside move" do
@@ -16,11 +16,12 @@ describe Board do
   end
 
   it "souldn't move on non empty square" do
-    board.move(0, x_symbol)
+    board.grid = [ x_symbol ]
     expect(board.move_available?(0)).to be_false
   end
 
-  it 'sould undo move' do
+  it 'should undo move' do
+    board.grid = [ x_symbol ]
     board.undo_move(0)
     expect(board.move_available?(0)).to be_true
   end
@@ -35,27 +36,26 @@ describe Board do
   end
 
   it 'should decrease empty squares' do
-    count = board.empty_squares.size
-    board.move(0, x_symbol)
-    expect(board.empty_squares.size).to be < count
+    board.grid = [ x_symbol,     blank_symbol, blank_symbol,
+                   blank_symbol, blank_symbol, blank_symbol,
+                   blank_symbol, blank_symbol, blank_symbol ]
+    expect(board.empty_squares.size).to be < board_size
   end
 
   it 'should detect if board is full with no winner' do
-    [ x_symbol, o_symbol, x_symbol,
-      x_symbol, o_symbol, x_symbol,
-      o_symbol, x_symbol, o_symbol].each.with_index do |symbol, index|
-      board.move(index, symbol)
-    end
+    board.grid = [ x_symbol, o_symbol, x_symbol,
+                   x_symbol, o_symbol, x_symbol,
+                   o_symbol, x_symbol, o_symbol ]
     expect(board).to be_draw
   end
 
   it 'should find if it has symbol on location' do
-    board.move(0, x_symbol)
+    board.grid = [ x_symbol ]
     expect(board.square_has_symbol?(0, x_symbol)).to be_true
   end
 
   it 'should detect winning' do
-    (0..3).each { |location| board.move(location, x_symbol) }
+    board.grid = [ x_symbol, x_symbol, x_symbol ]
     expect(board.win?(x_symbol)).to be_true
   end
 

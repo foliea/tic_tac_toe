@@ -22,26 +22,26 @@ describe Computer do
   end
 
   it 'should find winning location' do
-    board.move(0, x_symbol)
-    board.move(1, x_symbol)
+    board.grid = [ x_symbol, x_symbol, blank_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(2)
   end
 
   it 'should counter ennemy winning location' do
-    board.move(0, o_symbol)
-    board.move(1, o_symbol)
+    board.grid = [ o_symbol, o_symbol, blank_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(2)
   end
 
   it 'should fork' do
-    board.move(1, x_symbol)
-    board.move(5, x_symbol)
+    board.grid = [ blank_symbol, x_symbol,     blank_symbol,
+                   blank_symbol, blank_symbol, x_symbol,
+                   blank_symbol, blank_symbol, blank_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(2)
   end
 
   it 'should counter ennemy fork' do
-    board.move(1, o_symbol)
-    board.move(5, o_symbol)
+    board.grid = [ blank_symbol, o_symbol,     blank_symbol,
+                   blank_symbol, blank_symbol, o_symbol,
+                   blank_symbol, blank_symbol, blank_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(2)
   end
 
@@ -50,17 +50,16 @@ describe Computer do
   end
 
   it 'should take opposite corner' do
-    board.move(4, x_symbol)
-    board.move(0, o_symbol)
+    board.grid = [ o_symbol,     blank_symbol, blank_symbol,
+                   blank_symbol, x_symbol,     blank_symbol,
+                   blank_symbol, blank_symbol, blank_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(8)
   end
 
   it 'should take empty square' do
-    [ x_symbol,     o_symbol, x_symbol,
-      blank_symbol, o_symbol, x_symbol,
-      o_symbol,     x_symbol, o_symbol].each.with_index do |symbol, index|
-      board.move(index, symbol)
-    end
+    board.grid = [ x_symbol,     o_symbol, x_symbol,
+                   blank_symbol, x_symbol, x_symbol,
+                   o_symbol,     x_symbol, o_symbol ]
     expect(computer.find_next_location(board, o_symbol)).to eq(3)
   end
 end

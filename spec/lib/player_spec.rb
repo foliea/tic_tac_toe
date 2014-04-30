@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Player do
-  let(:player) { Player.new('X') }
+  let(:player) { Player.new(Parameters::X_SYMBOL) }
   let(:board)  { Board.new }
 
   it 'should have symbol' do

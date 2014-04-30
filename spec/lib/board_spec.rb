@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Board do
   let(:board)        { Board.new }
-  let(:x_symbol)     { Board::X_SYMBOL }
-  let(:o_symbol)     { Board::O_SYMBOL }
-  let(:blank_symbol) { Board::BLANK_SYMBOL }
-  let(:board_size)   { Board::SIZE }
+  let(:x_symbol)     { Parameters::X_SYMBOL }
+  let(:o_symbol)     { Parameters::O_SYMBOL }
+  let(:blank_symbol) { Parameters::BLANK_SYMBOL }
+  let(:board_size)   { Parameters::BOARD_SIZE }
 
   it 'should assign 9 squares' do
     expect(board.to_a.size).to eq(board_size)

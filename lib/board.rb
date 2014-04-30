@@ -1,27 +1,23 @@
 class Board
-  SIZE = 3 * 3
-  X_SYMBOL = 'X'.freeze
-  O_SYMBOL = 'O'.freeze
-  BLANK_SYMBOL = nil
 
   def initialize
-    @grid = Array.new(SIZE, BLANK_SYMBOL)
+    @grid = Array.new(Parameters::BOARD_SIZE, Parameters::BLANK_SYMBOL)
   end
 
   def reset
-    @grid.map! { BLANK_SYMBOL }
+    @grid.map! { Parameters::BLANK_SYMBOL }
   end
 
   def move(location, mark)
-    @grid[location] = mark if move_available?(location)
+    @grid[location] = mark #if move_available?(location)
   end
 
   def undo_move(location)
-    @grid[location] = BLANK_SYMBOL
+    @grid[location] = Parameters::BLANK_SYMBOL
   end
 
   def move_available?(location)
-    location && location >= 0 && location < SIZE && @grid[location] == BLANK_SYMBOL
+    location && location >= 0 && location < Parameters::BOARD_SIZE && @grid[location] == Parameters::BLANK_SYMBOL
   end
 
   def square_has_symbol?(location, symbol)
@@ -37,11 +33,11 @@ class Board
   end
 
   def draw?
-    !win?(X_SYMBOL) && !win?(O_SYMBOL) && empty_squares.size <= 0
+    !win?(Parameters::X_SYMBOL) && !win?(Parameters::O_SYMBOL) && empty_squares.size <= 0
   end
 
   def win?(symbol)
-    winning_patterns.each do |pattern|
+    Parameters.winning_patterns.each do |pattern|
       return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false
@@ -51,29 +47,4 @@ class Board
     @grid
   end
 
-  def center
-    4
-  end
-
-  def corners
-    [0, 6, 2, 8]
-  end
-
-  def middles
-    [1, 3, 5, 7]
-  end
-
-  def opposite_corners
-    [ [0, 8], [2, 6], [6, 2], [8, 0] ]
-  end
-
-  private
-
-  def winning_patterns
-    [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[6,4,2]
-    ]
-  end
 end

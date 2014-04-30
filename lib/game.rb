@@ -26,8 +26,8 @@ class Game
   end
 
   def winner
-    return Board::X_SYMBOL if @board.win?(Board::X_SYMBOL)
-    return Board::O_SYMBOL if @board.win?(Board::O_SYMBOL)
+    return Parameters::X_SYMBOL if @board.win?(Parameters::X_SYMBOL)
+    return Parameters::O_SYMBOL if @board.win?(Parameters::O_SYMBOL)
     return -1 if @board.draw?
     return 0
   end

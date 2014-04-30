@@ -10,7 +10,7 @@ class Computer < Player
   end
 
   def find_ennemy_symbol
-    (@symbol == Board::X_SYMBOL) ? Board::O_SYMBOL : Board::X_SYMBOL
+    (@symbol == Parameters::X_SYMBOL) ? Parameters::O_SYMBOL : Parameters::X_SYMBOL
   end
 
   def find_next_location(board, ennemy_symbol)
@@ -59,11 +59,11 @@ class Computer < Player
   end
 
   def center(board)
-    board.center if board.move_available?(board.center)
+    Parameters.center if board.move_available?(Parameters.center)
   end
 
   def opposite_corner(board, ennemy_symbol)
-    board.opposite_corners.each do |corner_1, corner_2|
+    Parameters.opposite_corners.each do |corner_1, corner_2|
       if board.square_has_symbol?(corner_1, ennemy_symbol) &&
          board.move_available?(corner_2)
         return corner_2
@@ -74,8 +74,8 @@ class Computer < Player
 
   def empty_square(board)
     square = nil
-    board.corners.each { |corner| square ||= corner if board.move_available?(corner) }
-    board.middles.each { |middle| square ||= middle if board.move_available?(middle) }
+    Parameters.corners.each { |corner| square ||= corner if board.move_available?(corner) }
+    Parameters.middles.each { |middle| square ||= middle if board.move_available?(middle) }
     square
   end
 

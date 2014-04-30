@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Game do
-  let(:player_one) { Computer.new(Board::X_SYMBOL) }
-  let(:player_two) { Computer.new(Board::O_SYMBOL) }
-  let(:x_symbol)   { Board::X_SYMBOL }
+  let(:player_one) { Computer.new(Parameters::X_SYMBOL) }
+  let(:player_two) { Computer.new(Parameters::O_SYMBOL) }
+  let(:x_symbol)   { Parameters::X_SYMBOL }
   let(:game)       { Game.new(player_one, player_two) }
 
   it 'should have player one' do
@@ -58,9 +58,8 @@ describe Game do
   end
 
   it 'should swap player between each call to play' do
-    p_1 = game.player_one
     game.start
     game.play
-    expect(game.player_two).to eq(p_1)
+    expect(game.player_two).to eq(player_one)
   end
 end

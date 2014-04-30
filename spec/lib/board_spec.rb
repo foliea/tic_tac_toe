@@ -58,4 +58,8 @@ describe Board do
     (0..3).each { |location| board.move(location, x_symbol) }
     expect(board.win?(x_symbol)).to be_true
   end
+
+  it 'should be convertible to an array' do
+    expect(board.to_a.class).to eq(Array)
+  end
 end

@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe Board do
-  let(:board)        { Board.new }
-  let(:x_symbol)     { Parameters::X_SYMBOL }
-  let(:o_symbol)     { Parameters::O_SYMBOL }
-  let(:blank_symbol) { Parameters::BLANK_SYMBOL }
-  let(:board_size)   { Parameters::BOARD_SIZE }
+  let(:board)              { Board.new }
+  let(:x_symbol)           { Parameters::X_SYMBOL }
+  let(:o_symbol)           { Parameters::O_SYMBOL }
+  let(:blank_symbol)       { Parameters::BLANK_SYMBOL }
+  let(:board_total_size)   { Parameters::BOARD_SIZE ** 2 }
 
   it 'should assign 9 squares' do
-    expect(board.grid.size).to eq(board_size)
+    expect(board.grid.size).to eq(board_total_size)
   end
 
   it "shouldn't allow outside move" do
@@ -18,6 +18,7 @@ describe Board do
   it "souldn't move on non empty square" do
     board.grid = [ x_symbol ]
     expect(board.move_available?(0)).to be_false
+    expect(board.move(0, x_symbol)).to be_nil
   end
 
   it 'should undo move' do
@@ -32,14 +33,14 @@ describe Board do
 
   it 'should reset' do
     board.reset
-    expect(board.empty_squares.size).to eq(board_size)
+    expect(board.empty_squares.size).to eq(board_total_size)
   end
 
   it 'should decrease empty squares' do
     board.grid = [ x_symbol,     blank_symbol, blank_symbol,
                    blank_symbol, blank_symbol, blank_symbol,
                    blank_symbol, blank_symbol, blank_symbol ]
-    expect(board.empty_squares.size).to be < board_size
+    expect(board.empty_squares.size).to be < board_total_size
   end
 
   it 'should detect if board is full with no winner' do
@@ -57,9 +58,5 @@ describe Board do
   it 'should detect winning' do
     board.grid = [ x_symbol, x_symbol, x_symbol ]
     expect(board.win?(x_symbol)).to be_true
-  end
-
-  it 'should be convertible to an array' do
-    expect(board.to_a.class).to eq(Array)
   end
 end

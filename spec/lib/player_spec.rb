@@ -11,5 +11,4 @@ describe Player do
   it 'should move' do
     expect(player.move(board, 0)).to_not be_nil
   end
-
 end

@@ -9,7 +9,8 @@ describe Human do
   end
 
   it 'should get next location from command line' do
-    $stdin = StringIO.new('1')
+    $stdin  = StringIO.new('1')
+    $stdout = StringIO.new
     expect(human.find_next_location).to eq(0)
   end
 

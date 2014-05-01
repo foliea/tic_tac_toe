@@ -1,8 +1,8 @@
 class Board
   attr_accessor :grid
-  
+
   def initialize
-    @grid = Array.new(Parameters::BOARD_SIZE, Parameters::BLANK_SYMBOL)
+    @grid = Array.new(Parameters::BOARD_SIZE ** 2, Parameters::BLANK_SYMBOL)
   end
 
   def reset
@@ -10,7 +10,7 @@ class Board
   end
 
   def move(location, mark)
-    @grid[location] = mark #if move_available?(location)
+    @grid[location] = mark if move_available?(location)
   end
 
   def undo_move(location)
@@ -38,14 +38,10 @@ class Board
   end
 
   def win?(symbol)
-    Parameters::WINNING_PATTERNS.each do |pattern|
+    Shapes::WINNING_PATTERNS.each do |pattern|
       return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false
-  end
-
-  def to_a
-    @grid
   end
 
 end

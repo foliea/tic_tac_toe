@@ -1,6 +1,19 @@
 #!/usr/bin/ruby
 
-$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'launcher'
+require 'board'
+require 'computer'
+require 'game'
+require 'human'
+require 'input_helper'
+require 'output_helper'
+require 'constants'
+require 'player.rb'
 
 if __FILE__ == $PROGRAM_NAME
+  launcher = Launcher.new
+
+  launcher.launch
 end

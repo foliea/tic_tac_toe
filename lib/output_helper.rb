@@ -1,25 +1,26 @@
 module OutputHelper
   extend self
 
-  def print_state(state, output_stream = $stdout)
-    output_stream.puts case state
+  def print_state(state, output = $stdout)
+    case state
     when State::X_SYMBOL_WIN
-      "-- #{Parameters::X_SYMBOL} wins -- "
+      output.puts "-- #{Parameters::X_SYMBOL} wins -- "
     when State::O_SYMBOL_WIN
-      "-- #{Parameters::O_SYMBOL} wins -- "
+      output.puts "-- #{Parameters::O_SYMBOL} wins -- "
     when State::DRAW
-      "-- It's a draw -- "
+      output.puts "-- It's a draw -- "
     when State::FORBIDDEN_MOVE
-      "-- Forbidden move --"
+      output.puts "-- Forbidden move --"
     end
   end
 
-  def print_board(board, output_stream = $stdout)
+  def print_board(board, output = $stdout)
     system('clear')
-    output_stream.puts '-----'
-    board.grid.each_slice(Parameters::BOARD_SIZE) do |slice|
-      output_stream.puts slice.to_s
+    board.grid.each_slice(Parameters::BOARD_SIZE) do |row|
+      row.each { |square| output.print "| #{square || '.'} |" }
+      output.puts
+      (0..5 * Parameters::BOARD_SIZE - 1).each { output.print '-' }
+      output.puts
     end
-    output_stream.puts '-----'
   end
 end

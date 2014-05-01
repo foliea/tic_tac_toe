@@ -2,7 +2,8 @@ require 'player'
 
 class Human < Player
   attr_accessor :symbol
-
+  attr_reader :input
+  
   def initialize symbol, input
     @input = input
     super(symbol)

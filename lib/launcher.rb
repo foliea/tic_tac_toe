@@ -21,7 +21,6 @@ class Launcher
       OutputHelper.print_board(@board)
       OutputHelper.print_state(game.state)
     end
-    launch
   end
 
 end

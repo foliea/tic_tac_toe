@@ -30,6 +30,11 @@ describe Game do
     expect(game.started?).to eq(true)
   end
 
+  it 'should reset board on start' do
+    game.board.expects(:reset)
+    game.start
+  end
+
   it 'should be started to play' do
     expect(game.play).to eq(nil)
   end

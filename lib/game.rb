@@ -12,6 +12,7 @@ class Game
 
   def start
     @started = true
+    @board.reset
   end
 
   def stop

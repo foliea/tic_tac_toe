@@ -15,6 +15,11 @@ module OutputHelper
   end
 
   def print_board(board, output_stream = $stdout)
-
+    system('clear')
+    output_stream.puts '-----'
+    board.grid.each_slice(Parameters::BOARD_SIZE) do |slice|
+      output_stream.puts slice.to_s
+    end
+    output_stream.puts '-----'
   end
 end

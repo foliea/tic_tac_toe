@@ -9,14 +9,19 @@ class Launcher
   end
 
   def launch
+    answer = InputHelper.ask_for_new_game
+    play_game if answer == 'y'
+  end
+
+  def play_game
     game.start
-    puts @board.grid.to_s
+    OutputHelper.print_board(@board)
     while(game.started?)
       game.play
-      puts @board.grid.to_s
+      OutputHelper.print_board(@board)
       OutputHelper.print_state(game.state)
     end
-
+    launch
   end
 
 end

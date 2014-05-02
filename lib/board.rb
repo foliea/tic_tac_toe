@@ -26,7 +26,7 @@ class Board
   end
 
   def empty_squares
-    squares = []
+    squares = Array.new
     @grid.each_index do |location|
       squares << location if move_available?(location)
     end

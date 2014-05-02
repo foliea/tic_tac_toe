@@ -31,11 +31,11 @@ class Computer < Player
   alias :block_win :get_win
 
   def get_wins_location(board, symbol)
-    wins = []
+    wins = Array.new
     board.empty_squares.each do |location|
-      board.move(location, symbol)
-      wins << location if board.win?(symbol)
-      board.undo_move(location)
+      if try_move(board, location, symbol) { board.win?(symbol) }      
+        wins << location
+      end
     end
     wins
   end
@@ -48,12 +48,18 @@ class Computer < Player
 
   def get_fork_location(board, symbol)
     board.empty_squares.each do |location|
-      board.move(location, symbol)
-      wins = get_wins_location(board, symbol)
-      board.undo_move(location)
-      return location if wins.size >= 2
+      if try_move(board, location, symbol) { get_wins_location(board, symbol).size >=  2 }
+        return location
+      end
     end
     nil
+  end
+  
+  def try_move(board, location, symbol, &block)
+    board.move(location, symbol)
+    res = block.call
+    board.undo_move(location)
+    return res
   end
 
   def center(board)

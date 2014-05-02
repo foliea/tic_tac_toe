@@ -3,6 +3,7 @@ class Board
 
   def initialize
     @grid = Array.new(Parameters::BOARD_SIZE ** 2, Parameters::BLANK_SYMBOL)
+    set_winning_patterns
   end
 
   def reset
@@ -38,10 +39,32 @@ class Board
   end
 
   def win?(symbol)
-    Shapes::WINNING_PATTERNS.each do |pattern|
+    @winning_patterns.each do |pattern|
       return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false
+  end
+  
+  def set_winning_patterns
+    @winning_patterns = Array.new
+    board_size = Parameters::BOARD_SIZE
+    diagonale_1 = Array.new
+    diagonale_2 = Array.new
+    
+    board_size.times do |i|
+      row = Array.new
+      column = Array.new
+      board_size.times do |j|
+        row    << i * board_size + j
+        column << j * board_size + i
+      end
+      diagonale_1 << (i)     * (board_size + 1)
+      diagonale_2 << (i + 1) * (board_size - 1)
+      @winning_patterns << row
+      @winning_patterns << column
+    end
+    @winning_patterns << diagonale_1
+    @winning_patterns << diagonale_2
   end
 
 end

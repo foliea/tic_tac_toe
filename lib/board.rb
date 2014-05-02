@@ -65,6 +65,7 @@ class Board
     end
     @winning_patterns << diagonale_1
     @winning_patterns << diagonale_2
+    puts @winning_patterns.to_s
   end
-
+  
 end

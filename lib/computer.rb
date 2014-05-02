@@ -4,8 +4,9 @@ class Computer < Player
   attr_accessor :symbol
 
   def move(board)
-    location = find_next_location(board, find_ennemy_symbol)
-    super(board, location)
+    @ennemy_symbol = find_ennemy_symbol
+    minimax(board, @symbol, @ennemy_symbol)
+    super(board, @choice)
   end
 
   def find_ennemy_symbol
@@ -23,6 +24,43 @@ class Computer < Player
   end
 
   private
+  
+  def score(board, depth)
+    if board.win?(@symbol)
+      return 10 - depth
+    elsif board.win?(@ennemy_symbol)
+      return depth -10
+    else
+      return 0
+    end
+  end
+  
+  def minimax(board, symbol, ennemy_symbol, depth = 0)
+    return score(board, depth) if board.draw? || board.win?(@symbol) || board.win?(@ennemy_symbol)
+    scores = Array.new
+    moves  = Array.new
+    depth += 1
+    
+    board.empty_squares.each do |move|
+        possible_board = board.dup
+        possible_board.grid = board.grid.dup
+        # move to board.get_deep_copy
+        possible_board.move(move, symbol)
+        OutputHelper.print_board(possible_board)
+        scores.push minimax(possible_board, ennemy_symbol, symbol, depth)
+        moves.push move
+    end
+
+    if symbol == @symbol
+        max_score_index = scores.each_with_index.max[1]
+        @choice = moves[max_score_index]
+        return scores[max_score_index]
+    else
+        min_score_index = scores.each_with_index.min[1]
+        @choice = moves[min_score_index]
+        return scores[min_score_index]
+    end
+  end
 
   def get_win(board, symbol)
     get_wins_location(board, symbol).first

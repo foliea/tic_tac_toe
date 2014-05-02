@@ -4,13 +4,13 @@ module OutputHelper
   def print_state(state, output = $stdout)
     case state
     when State::X_SYMBOL_WIN
-      output.puts "-- #{Parameters::X_SYMBOL} wins -- "
+      output.puts "#{Parameters::X_SYMBOL} wins !"
     when State::O_SYMBOL_WIN
-      output.puts "-- #{Parameters::O_SYMBOL} wins -- "
+      output.puts "#{Parameters::O_SYMBOL} wins !"
     when State::DRAW
-      output.puts "-- It's a draw -- "
+      output.puts "It's a draw !"
     when State::FORBIDDEN_MOVE
-      output.puts "-- Forbidden move --"
+      output.puts "Forbidden move !"
     end
   end
 

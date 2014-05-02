@@ -13,4 +13,9 @@ describe OutputHelper do
     output.expects(:puts).at_least(1)
     OutputHelper.print_board(board, output)
   end
+  
+  it 'should print separator' do
+    output.expects(:puts).at_least(1)
+    OutputHelper.print_separator(output)
+  end
 end

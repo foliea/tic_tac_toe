@@ -4,8 +4,7 @@ class Computer < Player
   attr_accessor :symbol
 
   def move(board)
-    ennemy_symbol = find_ennemy_symbol
-    location = find_next_location(board, ennemy_symbol)
+    location = find_next_location(board, find_ennemy_symbol)
     super(board, location)
   end
 
@@ -26,8 +25,7 @@ class Computer < Player
   private
 
   def get_win(board, symbol)
-    squares = get_wins_location(board, symbol)
-    squares.first
+    get_wins_location(board, symbol).first
   end
 
   alias :block_win :get_win
@@ -73,10 +71,9 @@ class Computer < Player
   end
 
   def empty_square(board)
-    square = nil
-    Shapes::CORNERS.each { |corner| square ||= corner if board.move_available?(corner) }
-    Shapes::MIDDLES.each { |middle| square ||= middle if board.move_available?(middle) }
-    square
+    Shapes::CORNERS.each { |corner| return corner if board.move_available?(corner) }
+    Shapes::MIDDLES.each { |middle| return middle if board.move_available?(middle) }
+    nil
   end
 
 end

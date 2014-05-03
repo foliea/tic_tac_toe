@@ -15,12 +15,16 @@ class Launcher
 
   def play_game
     game.start
+
     OutputHelper.print_board(@board)
+
     while(game.started?)
       game.play
+
       OutputHelper.print_board(@board)
       OutputHelper.print_state(game.state)
     end
+
     launch
   end
 

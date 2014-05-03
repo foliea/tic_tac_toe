@@ -7,7 +7,7 @@ module InputHelper
   end
 
   def ask_for_next_location(input_stream = $stdin, output_stream = $stdout)
-    output_stream.puts 'Please enter your move (between 1 and 9) :'
+    output_stream.puts 'Please enter your move :'
     next_location = input_stream.gets.chomp.to_i - 1
   end
 end

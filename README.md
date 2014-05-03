@@ -1,8 +1,8 @@
-##Tic Tac Toe
+## Tic Tac Toe
 
 A Tic Tac Toe Game for 8th Light submission.
 
-Run this command to launch a new game :
+Run this command to launch the game :
 
   `ruby ./bin/tic_tac_toe`
 
@@ -15,6 +15,14 @@ Follow the instructions then.
 4 | 5 | 6
 
 7 | 8 | 9
+
+Player start to play first.
+
+Then :
+
+Computer will play first after a draw.
+
+Player will play first after losing.
 
 ### Tests
 

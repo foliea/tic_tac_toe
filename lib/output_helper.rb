@@ -12,16 +12,23 @@ module OutputHelper
 
   def print_board(board, output = $stdout)
     system('clear')
+
     print_separator(board.size, output)
+
     board.grid.each_slice(board.size) do |row|
-      row.each { |square| output.print "| #{square || '.'} |" }
+      row.each_with_index do |square, index|
+        output.print " #{square || '.'} "
+        output.print '|' unless index == board.size - 1
+      end
       output.puts
+
       print_separator(board.size, output)
+
     end
   end
 
   def print_separator(size, output = $stdout)
-    (5 * size).times { output.print '-' }
+    (3 * size + size - 1).times { output.print '-' }
     output.puts
   end
 end

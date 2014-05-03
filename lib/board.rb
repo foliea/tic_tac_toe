@@ -54,7 +54,7 @@ class Board
     diagonale_2 = Array.new
 
     @size.times do |i|
-      row = Array.new
+      row    = Array.new
       column = Array.new
       @size.times do |j|
         row    << i * @size + j

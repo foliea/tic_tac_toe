@@ -28,6 +28,7 @@ class Game
     else
       @forbidden_move = true
     end
+
     stop if state != State::PLAYING && state != State::FORBIDDEN_MOVE
     return state
   end

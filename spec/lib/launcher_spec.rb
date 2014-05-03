@@ -31,9 +31,4 @@ describe Launcher do
     launcher.launch
   end
 
-  it 'should start a game' do
-  #  launcher.game.expects(:start)
-  #  launcher.play_game
-  end
-
 end

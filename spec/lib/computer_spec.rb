@@ -15,14 +15,18 @@ describe Computer do
     expect(computer.ennemy_symbol).to eq(o_symbol)
   end
 
-  it 'should find winning location' do
-    board.grid = [ x_symbol, x_symbol, blank_symbol ]
+  it 'should winning' do
+    board.grid = [ x_symbol, x_symbol,     blank_symbol,
+                   o_symbol, blank_symbol, blank_symbol,
+                   o_symbol, blank_symbol, blank_symbol ]
     best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
     expect(best_move).to eq(2)
   end
 
-  it 'should counter ennemy winning location' do
-    board.grid = [ o_symbol, o_symbol, blank_symbol ]
+  it 'should counter ennemy' do
+    board.grid = [ o_symbol,     o_symbol,     blank_symbol,
+                   x_symbol,     blank_symbol, blank_symbol,
+                   blank_symbol, blank_symbol, blank_symbol]
     best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
     expect(best_move).to eq(2)
   end

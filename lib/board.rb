@@ -37,7 +37,9 @@ class Board
   end
 
   def draw?
-    !win?(Parameters::X_SYMBOL) && !win?(Parameters::O_SYMBOL) && empty_squares.size <= 0
+    !win?(Parameters::X_SYMBOL) &&
+    !win?(Parameters::O_SYMBOL) &&
+    empty_squares.size <= 0
   end
 
   def win?(symbol)

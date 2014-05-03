@@ -2,9 +2,9 @@
 
 A Tic Tac Toe Game for 8th Light submission.
 
-Run this command to launch the game :
+Run this command to launch the game from the `/bin` directory :
 
-  `ruby ./bin/tic_tac_toe`
+  `ruby ./tic_tac_toe`
 
 Follow the instructions then.
 

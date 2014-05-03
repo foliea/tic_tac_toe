@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Human do
-  let(:board) { Board.new }
+  let(:board) { Board.new(3) }
   let(:human) { Human.new(Parameters::X_SYMBOL, InputHelper) }
 
   it 'should have symbol' do

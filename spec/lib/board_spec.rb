@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Board do
-  let(:board)              { Board.new }
+  let(:board)              { Board.new(3) }
   let(:x_symbol)           { Parameters::X_SYMBOL }
   let(:o_symbol)           { Parameters::O_SYMBOL }
   let(:blank_symbol)       { Parameters::BLANK_SYMBOL }
-  let(:board_total_size)   { Parameters::BOARD_SIZE ** 2 }
+  let(:board_total_size)   { board.size ** 2 }
 
   it 'should assign 9 squares' do
     expect(board.grid.size).to eq(board_total_size)

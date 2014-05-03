@@ -5,7 +5,7 @@ describe Game do
   let(:o_symbol)   { Parameters::O_SYMBOL }
   let(:player_one) { Computer.new(x_symbol) }
   let(:player_two) { Human.new(o_symbol, InputHelper) }
-  let(:board)      { Board.new }
+  let(:board)      { Board.new(3) }
   let(:game)       { Game.new(board, player_one, player_two) }
 
   it 'should have player one' do

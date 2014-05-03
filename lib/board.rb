@@ -1,8 +1,10 @@
 class Board
   attr_accessor :grid
+  attr_reader :size
 
-  def initialize
-    @grid = Array.new(Parameters::BOARD_SIZE ** 2, Parameters::BLANK_SYMBOL)
+  def initialize(size)
+    @size = size
+    @grid = Array.new(@size ** 2, Parameters::BLANK_SYMBOL)
     set_winning_patterns
   end
 
@@ -44,28 +46,27 @@ class Board
     end
     false
   end
-  
+
   def set_winning_patterns
     @winning_patterns = Array.new
-    board_size = Parameters::BOARD_SIZE
+
     diagonale_1 = Array.new
     diagonale_2 = Array.new
-    
-    board_size.times do |i|
+
+    @size.times do |i|
       row = Array.new
       column = Array.new
-      board_size.times do |j|
-        row    << i * board_size + j
-        column << j * board_size + i
+      @size.times do |j|
+        row    << i * @size + j
+        column << j * @size + i
       end
-      diagonale_1 << (i)     * (board_size + 1)
-      diagonale_2 << (i + 1) * (board_size - 1)
+      diagonale_1 << (i)     * (@size + 1)
+      diagonale_2 << (i + 1) * (@size - 1)
       @winning_patterns << row
       @winning_patterns << column
     end
     @winning_patterns << diagonale_1
     @winning_patterns << diagonale_2
-    puts @winning_patterns.to_s
   end
-  
+
 end

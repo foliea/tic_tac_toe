@@ -1,11 +1,7 @@
 module Parameters
-
   X_SYMBOL = 'X'.freeze
   O_SYMBOL = 'O'.freeze
   BLANK_SYMBOL = nil.freeze
-
-  BOARD_SIZE = 4
-
 end
 
 module Shapes

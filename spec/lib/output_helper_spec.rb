@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OutputHelper do
   let(:output) { StringIO.new }
-  let(:board)  { Board.new }
+  let(:board)  { Board.new(3) }
 
   it 'should print state' do
     output.expects(:puts)
@@ -13,9 +13,9 @@ describe OutputHelper do
     output.expects(:puts).at_least(1)
     OutputHelper.print_board(board, output)
   end
-  
+
   it 'should print separator' do
     output.expects(:puts).at_least(1)
-    OutputHelper.print_separator(output)
+    OutputHelper.print_separator(1, output)
   end
 end

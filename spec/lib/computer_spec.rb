@@ -4,7 +4,7 @@ describe Computer do
   let(:x_symbol)     { Parameters::X_SYMBOL }
   let(:o_symbol)     { Parameters::O_SYMBOL }
   let(:blank_symbol) { Parameters::BLANK_SYMBOL }
-  let(:board)        { Board.new }
+  let(:board)        { Board.new(3) }
   let(:computer)     { Computer.new(x_symbol) }
 
   it 'should have symbol' do

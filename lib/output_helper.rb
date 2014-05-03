@@ -11,7 +11,7 @@ module OutputHelper
   end
 
   def print_board(board, output = $stdout)
-    #system('clear')
+    system('clear')
     print_separator(board.size, output)
     board.grid.each_slice(board.size) do |row|
       row.each { |square| output.print "| #{square || '.'} |" }

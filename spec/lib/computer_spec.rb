@@ -12,54 +12,34 @@ describe Computer do
   end
 
   it 'should find ennemy symbol' do
-    expect(computer.send(:find_ennemy_symbol)).to eq(o_symbol)
-  end
-
-  it 'should move after finding ennemy symbol and location' do
-    computer.stubs(:find_ennemy_symbol).returns(o_symbol)
-    computer.stubs(:find_next_location).returns(1)
-    expect(computer.move(board)).to_not be_nil
+    expect(computer.ennemy_symbol).to eq(o_symbol)
   end
 
   it 'should find winning location' do
     board.grid = [ x_symbol, x_symbol, blank_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(2)
+    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    expect(best_move).to eq(2)
   end
 
   it 'should counter ennemy winning location' do
     board.grid = [ o_symbol, o_symbol, blank_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(2)
+    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    expect(best_move).to eq(2)
   end
 
-  it 'should fork' do
-    board.grid = [ blank_symbol, x_symbol,     blank_symbol,
-                   blank_symbol, blank_symbol, x_symbol,
-                   blank_symbol, blank_symbol, blank_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(2)
+  it 'should win first if possible' do
+    board.grid = [ o_symbol, blank_symbol, x_symbol,
+                   x_symbol, blank_symbol, blank_symbol,
+                   x_symbol, o_symbol,     o_symbol ]
+    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    expect(best_move).to eq(4)
   end
 
-  it 'should counter ennemy fork' do
-    board.grid = [ blank_symbol, o_symbol,     blank_symbol,
-                   blank_symbol, blank_symbol, o_symbol,
-                   blank_symbol, blank_symbol, blank_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(2)
-  end
-
-  it 'should take center' do
-    expect(computer.find_next_location(board, o_symbol)).to eq(4)
-  end
-
-  it 'should take opposite corner' do
-    board.grid = [ o_symbol,     blank_symbol, blank_symbol,
-                   blank_symbol, x_symbol,     blank_symbol,
-                   blank_symbol, blank_symbol, blank_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(8)
-  end
-
-  it 'should take empty square' do
-    board.grid = [ x_symbol,     o_symbol, x_symbol,
-                   blank_symbol, x_symbol, x_symbol,
-                   o_symbol,     x_symbol, o_symbol ]
-    expect(computer.find_next_location(board, o_symbol)).to eq(3)
+  it 'should counter ennemy first if winning is not possible' do
+    board.grid = [ o_symbol, blank_symbol, blank_symbol,
+                   x_symbol, blank_symbol, blank_symbol,
+                   x_symbol, o_symbol,     o_symbol ]
+    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    expect(best_move).to eq(4)
   end
 end

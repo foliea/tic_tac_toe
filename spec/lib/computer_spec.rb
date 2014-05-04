@@ -46,4 +46,8 @@ describe Computer do
     best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
     expect(best_move).to eq(4)
   end
+
+	it '' do
+
+	end
 end

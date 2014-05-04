@@ -8,6 +8,7 @@ class Game
     @board      = board
     @player_one = player_one
     @player_two = player_two
+    @started    = false
   end
 
   def start
@@ -20,7 +21,7 @@ class Game
   end
 
   def play
-    return if !started?
+    return state if !started?
 
     if @player_one.move(@board)
       @forbidden_move = false

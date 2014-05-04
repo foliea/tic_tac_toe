@@ -21,7 +21,7 @@ describe Game do
   end
 
   it 'should detect if its started' do
-    expect(game.started?).to eq(nil)
+    expect(game.started?).to eq(false)
     expect(game.state).to eq(State::NOT_STARTED)
   end
 
@@ -36,7 +36,7 @@ describe Game do
   end
 
   it 'should be started to play' do
-    expect(game.play).to eq(nil)
+    expect(game.play).to eq(State::NOT_STARTED)
   end
 
   it "should stop" do

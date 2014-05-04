@@ -7,7 +7,11 @@ describe Board do
   let(:blank_symbol)       { Parameters::BLANK_SYMBOL }
   let(:board_total_size)   { board.size ** 2 }
 
-  it 'should assign 9 squares' do
+  it 'should have a size' do
+    expect(board.size).to_not be_nil
+  end
+
+  it 'should create squares' do
     expect(board.grid.size).to eq(board_total_size)
   end
 

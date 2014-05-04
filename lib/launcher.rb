@@ -14,15 +14,15 @@ class Launcher
   end
 
   def play_game
-    game.start
+    @game.start
 
     OutputHelper.print_board(@board)
 
-    while(game.started?)
-      game.play
+    while(@game.started?)
+      @game.play
 
       OutputHelper.print_board(@board)
-      OutputHelper.print_state(game.state)
+      OutputHelper.print_state(@game.state)
     end
 
     launch

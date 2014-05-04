@@ -26,24 +26,22 @@ class Computer < Player
       board.move(location, symbol)
 
       if board.draw? || board.win?(@symbol) || board.win?(@ennemy_symbol)
-        score = board.size / 2 * get_score(board) / depth
+        score = get_score(board) * max_depth(board) / depth
       else
         move_position, score = minimax(board, ennemy_symbol, symbol, alpha, beta, depth)
       end
 
-      if symbol == @symbol
-        if best_score == nil || score > best_score
+      if symbol == @symbol && (best_score == nil || score > best_score)
           best_score = alpha = score
           best_move = location
-        end
-      else
-        if best_score == nil || score < best_score
+      end
+      if symbol != @symbol && (best_score == nil || score < best_score)
           best_score = beta = score
           best_move = location
-        end
       end
 
       board.undo_move(location)
+
       if alpha >= beta
         break
       end
@@ -64,4 +62,7 @@ class Computer < Player
     end
   end
 
+  def max_depth(board)
+    board.size / 2
+  end
 end

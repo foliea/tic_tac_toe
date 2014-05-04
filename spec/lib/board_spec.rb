@@ -59,19 +59,19 @@ describe Board do
     expect(board.square_has_symbol?(0, x_symbol)).to be_true
   end
 
-  it 'should detect winning on a row' do
+  it 'should detect when a player win on a row' do
     board.grid = [ x_symbol, x_symbol, x_symbol ]
     expect(board.win?(x_symbol)).to be_true
   end
 
-  it 'should detect winning on a column' do
+  it 'should detect when a player win on a column' do
     board.grid = [ x_symbol, blank_symbol, blank_symbol,
                    x_symbol, blank_symbol, blank_symbol,
                    x_symbol, blank_symbol, blank_symbol ]
     expect(board.win?(x_symbol)).to be_true
   end
 
-  it 'should detect winning on a diagonale' do
+  it 'should detect when a player win on a diagonale' do
     board.grid = [ x_symbol,     blank_symbol, blank_symbol,
                    x_symbol,     x_symbol,     blank_symbol,
                    blank_symbol, blank_symbol, x_symbol ]

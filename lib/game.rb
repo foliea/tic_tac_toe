@@ -1,7 +1,7 @@
 class Game
   attr_reader :started, :forbidden_move, :board, :player_one, :player_two
 
-  alias :started? :started
+  alias :started?        :started
   alias :forbidden_move? :forbidden_move
 
   def initialize(board, player_one, player_two)

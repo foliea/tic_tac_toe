@@ -20,7 +20,7 @@ Player start to play first.
 
 Then :
 
-Computer will play first after a draw.
+It will switch players after a draw.
 
 Player will play first after a loss.
 

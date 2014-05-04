@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.1.1'
 
-gem 'rspec'
-gem 'mocha'
-
+gem 'rspec', '~> 2.14.1'
+gem 'mocha', '~> 1.0.0'

@@ -5,7 +5,7 @@ describe OutputHelper do
   let(:board)  { Board.new(3) }
 
   it 'should print state' do
-    output.expects(:puts)
+    output.expects(:puts).at_least(1)
     OutputHelper.print_state(State::X_SYMBOL_WIN, output)
   end
 

@@ -11,11 +11,11 @@ describe Computer do
     expect(computer.symbol).to_not be_nil
   end
 
-  it 'should find ennemy symbol' do
-    expect(computer.ennemy_symbol).to eq(o_symbol)
+  it 'should find opponent symbol' do
+    expect(computer.opponent_symbol).to eq(o_symbol)
   end
 
-  it 'should winning' do
+  it 'should win' do
     board.grid = [ x_symbol, x_symbol,     blank_symbol,
                    o_symbol, blank_symbol, blank_symbol,
                    o_symbol, blank_symbol, blank_symbol ]
@@ -23,7 +23,7 @@ describe Computer do
     expect(best_move).to eq(2)
   end
 
-  it 'should counter ennemy' do
+  it 'should counter opponent' do
     board.grid = [ o_symbol,     o_symbol,     blank_symbol,
                    x_symbol,     blank_symbol, blank_symbol,
                    blank_symbol, blank_symbol, blank_symbol]
@@ -39,7 +39,7 @@ describe Computer do
     expect(best_move).to eq(4)
   end
 
-  it 'should counter ennemy first if winning is not possible' do
+  it 'should counter opponent first if winning is not possible' do
     board.grid = [ o_symbol, blank_symbol, blank_symbol,
                    x_symbol, blank_symbol, blank_symbol,
                    x_symbol, o_symbol,     o_symbol ]

@@ -1,23 +1,23 @@
 require 'player'
 
 class Computer < Player
-  attr_accessor :symbol, :ennemy_symbol
+  attr_accessor :symbol, :opponent_symbol
 
   def initialize(symbol)
     super(symbol)
-    @ennemy_symbol = find_ennemy_symbol
+    @opponent_symbol = find_opponent_symbol
   end
 
   def move(board)
-    best_move, best_score = minimax(board, @symbol, @ennemy_symbol)
+    best_move, best_score = minimax(board, @symbol, @opponent_symbol)
     super(board, best_move)
   end
 
-  def find_ennemy_symbol
+  def find_opponent_symbol
     (@symbol == Parameters::X_SYMBOL) ? Parameters::O_SYMBOL : Parameters::X_SYMBOL
   end
 
-  def minimax(board, symbol, ennemy_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
+  def minimax(board, symbol, opponent_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
     best_score = nil
     best_move  = nil
     depth +=1
@@ -25,10 +25,10 @@ class Computer < Player
     board.empty_squares.each do |location|
       board.move(location, symbol)
 
-      if board.draw? || board.win?(@symbol) || board.win?(@ennemy_symbol)
+      if board.draw? || board.win?(@symbol) || board.win?(@opponent_symbol)
         score = get_score(board) * max_depth(board) / depth
       else
-        move_position, score = minimax(board, ennemy_symbol, symbol, alpha, beta, depth)
+        move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
       end
 
       if symbol == @symbol && (best_score == nil || score > best_score)
@@ -55,7 +55,7 @@ class Computer < Player
   def get_score(board)
     if board.win?(@symbol)
       return 1
-    elsif board.win?(@ennemy_symbol)
+    elsif board.win?(@opponent_symbol)
       return -1
     else
       return 0

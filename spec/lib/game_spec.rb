@@ -44,48 +44,65 @@ describe Game do
     expect(game.started?).to eq(false)
   end
 
-  it 'should return state winner if there is a winner' do
-    game.board.stubs(:win?).returns(x_symbol)
-    expect(game.state).to eq(State::X_SYMBOL_WIN)
+  context 'when game is over' do
+
+    it 'should stop' do
+      game.stubs(:winner).returns(x_symbol)
+      game.play
+      expect(game.started?).to be_false
+    end
   end
 
-  it 'should return state draw if draw' do
-    game.board.stubs(:draw?).returns(true)
-    expect(game.state).to eq(State::DRAW)
+  context 'when there is a winner' do
+
+    it 'should return state winner' do
+      game.board.stubs(:win?).returns(x_symbol)
+      expect(game.state).to eq(State::X_SYMBOL_WIN)
+    end
   end
 
-  it 'should return state playing if not over' do
-    game.stubs(:started?).returns(true)
-    expect(game.state).to eq(State::PLAYING)
+  context 'when draw' do
+
+    it 'should return state draw' do
+      game.board.stubs(:draw?).returns(true)
+      expect(game.state).to eq(State::DRAW)
+    end
   end
 
-  it 'should return state forbidden move if move failed' do
-    game.stubs(:started?).returns(true)
-    game.stubs(:forbidden_move?).returns(true)
-    expect(game.state).to eq(State::FORBIDDEN_MOVE)
+  context 'when playing' do
+
+    it 'should return state playing' do
+      game.stubs(:started?).returns(true)
+      expect(game.state).to eq(State::PLAYING)
+    end
   end
 
-  it 'should set forbidden move if a player attempt a bad move' do
-    $stdin  = StringIO.new('0')
-    $stdout = StringIO.new
+  context 'when a player attempt to do a forbidden move' do
 
-    game.stubs(:started?).returns(true)
-    game.switch_players
-    game.play
-    expect(game.state).to eq(State::FORBIDDEN_MOVE)
+    it 'should set forbidden move' do
+      $stdin  = StringIO.new('0')
+      $stdout = StringIO.new
+
+      game.stubs(:started?).returns(true)
+      game.switch_players
+      game.play
+      expect(game.state).to eq(State::FORBIDDEN_MOVE)
+    end
+
+    it 'should return state forbidden move' do
+      game.stubs(:started?).returns(true)
+      game.stubs(:forbidden_move?).returns(true)
+      expect(game.state).to eq(State::FORBIDDEN_MOVE)
+    end
   end
 
-  it 'should stop if winner or draw' do
-    game.stubs(:winner).returns(x_symbol)
-    game.play
-    expect(game.started?).to be_false
-  end
+  context 'between each call to play' do
 
-  it 'should swap player between each call to play' do
-    game.stubs(:started?).returns(true)
-    game.play
-    expect(game.player_two).to eq(player_one)
-    expect(game.player_one).to eq(player_two)
+    it 'should swap player' do
+      game.stubs(:started?).returns(true)
+      game.play
+      expect(game.player_two).to eq(player_one)
+      expect(game.player_one).to eq(player_two)
+    end
   end
-
 end

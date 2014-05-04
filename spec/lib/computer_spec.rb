@@ -31,20 +31,32 @@ describe Computer do
     expect(best_move).to eq(2)
   end
 
-  it 'should win first if possible' do
-    board.grid = [ o_symbol, blank_symbol, x_symbol,
-                   x_symbol, blank_symbol, blank_symbol,
-                   x_symbol, o_symbol,     o_symbol ]
+  it 'should draw if winning is not possible' do
+    board.grid = [ x_symbol, x_symbol, o_symbol,
+                   o_symbol, o_symbol, x_symbol,
+                   x_symbol, o_symbol, blank_symbol ]
     best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
-    expect(best_move).to eq(4)
+    expect(best_move).to eq(8)
   end
 
-  it 'should counter opponent first if winning is not possible' do
-    board.grid = [ o_symbol, blank_symbol, blank_symbol,
-                   x_symbol, blank_symbol, blank_symbol,
-                   x_symbol, o_symbol,     o_symbol ]
-    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
-    expect(best_move).to eq(4)
+  context 'when opponent can win' do
+
+    it 'should win first if winning is possible' do
+      board.grid = [ blank_symbol, o_symbol,     blank_symbol,
+                     x_symbol,     o_symbol,     blank_symbol,
+                     x_symbol,     blank_symbol, blank_symbol ]
+      best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+      expect(best_move).to eq(0)
+    end
+
+    it 'should counter opponent first if winning is not possible' do
+      board.grid = [ o_symbol, blank_symbol, blank_symbol,
+                     x_symbol, blank_symbol, blank_symbol,
+                     x_symbol, o_symbol,     o_symbol ]
+      best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+      expect(best_move).to eq(4)
+    end
+
   end
 
 end

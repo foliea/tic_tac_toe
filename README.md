@@ -22,7 +22,7 @@ Then :
 
 Computer will play first after a draw.
 
-Player will play first after losing.
+Player will play first after a loss.
 
 ### Tests
 

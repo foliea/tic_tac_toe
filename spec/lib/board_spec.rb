@@ -47,31 +47,31 @@ describe Board do
     expect(board.empty_squares.size).to be < board_total_size
   end
 
-  it 'should detect if board is full with no winner' do
+  it 'should detect draw' do
     board.grid = [ x_symbol, o_symbol, x_symbol,
                    x_symbol, o_symbol, x_symbol,
                    o_symbol, x_symbol, o_symbol ]
     expect(board).to be_draw
   end
 
-  it 'should find if it has symbol on location' do
+  it 'should find if square has symbol' do
     board.grid = [ x_symbol ]
     expect(board.square_has_symbol?(0, x_symbol)).to be_true
   end
 
-  it 'should detect winning on row' do
+  it 'should detect winning on a row' do
     board.grid = [ x_symbol, x_symbol, x_symbol ]
     expect(board.win?(x_symbol)).to be_true
   end
 
-  it 'should detect winning on column' do
+  it 'should detect winning on a column' do
     board.grid = [ x_symbol, blank_symbol, blank_symbol,
                    x_symbol, blank_symbol, blank_symbol,
                    x_symbol, blank_symbol, blank_symbol ]
     expect(board.win?(x_symbol)).to be_true
   end
 
-  it 'should detect winning on diagonale' do
+  it 'should detect winning on a diagonale' do
     board.grid = [ x_symbol,     blank_symbol, blank_symbol,
                    x_symbol,     x_symbol,     blank_symbol,
                    blank_symbol, blank_symbol, x_symbol ]

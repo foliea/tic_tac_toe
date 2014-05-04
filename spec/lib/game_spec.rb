@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Game do
-  let(:x_symbol)   { Parameters::X_SYMBOL }
-  let(:o_symbol)   { Parameters::O_SYMBOL }
+  let(:x_symbol)   { Params::X_SYMBOL }
+  let(:o_symbol)   { Params::O_SYMBOL }
   let(:player_one) { Computer.new(x_symbol) }
   let(:player_two) { Human.new(o_symbol, InputHelper) }
   let(:board)      { Board.new(3) }

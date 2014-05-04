@@ -4,12 +4,12 @@ class Board
 
   def initialize(size)
     @size = size
-    @grid = Array.new(@size ** 2, Parameters::BLANK_SYMBOL)
+    @grid = Array.new(@size ** 2, Params::BLANK_SYMBOL)
     @winning_patterns = get_winning_patterns
   end
 
   def reset
-    @grid.map! { Parameters::BLANK_SYMBOL }
+    @grid.map! { Params::BLANK_SYMBOL }
   end
 
   def move(location, mark)
@@ -17,13 +17,13 @@ class Board
   end
 
   def undo_move(location)
-    @grid[location] = Parameters::BLANK_SYMBOL
+    @grid[location] = Params::BLANK_SYMBOL
   end
 
   def move_available?(location)
     location >= 0 &&
     location < @grid.size &&
-    @grid[location] == Parameters::BLANK_SYMBOL
+    @grid[location] == Params::BLANK_SYMBOL
   end
 
   def square_has_symbol?(location, symbol)
@@ -39,8 +39,8 @@ class Board
   end
 
   def draw?
-    !win?(Parameters::X_SYMBOL) &&
-    !win?(Parameters::O_SYMBOL) &&
+    !win?(Params::X_SYMBOL) &&
+    !win?(Params::O_SYMBOL) &&
     empty_squares.size <= 0
   end
 

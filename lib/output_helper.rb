@@ -3,8 +3,8 @@ module OutputHelper
 
   def print_state(state, output = $stdout)
     [
-      [State::X_SYMBOL_WIN,   "#{Parameters::X_SYMBOL} wins !"],
-      [State::O_SYMBOL_WIN,   "#{Parameters::O_SYMBOL} wins !"],
+      [State::X_SYMBOL_WIN,   "#{Params::X_SYMBOL} wins !"],
+      [State::O_SYMBOL_WIN,   "#{Params::O_SYMBOL} wins !"],
       [State::DRAW,           "It's a draw !"],
       [State::FORBIDDEN_MOVE, "Forbidden move !"]
     ].each { |s, msg| output.puts msg if state == s }

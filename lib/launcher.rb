@@ -3,8 +3,8 @@ class Launcher
 
   def initialize
     @board      = Board.new(3)
-    @player_one = Human.new(Parameters::X_SYMBOL, InputHelper)
-    @player_two = Computer.new(Parameters::O_SYMBOL)
+    @player_one = Human.new(Params::X_SYMBOL, InputHelper)
+    @player_two = Computer.new(Params::O_SYMBOL)
     @game       = Game.new(@board, @player_one, @player_two)
   end
 

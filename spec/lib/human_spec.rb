@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Human do
   let(:board) { Board.new(3) }
-  let(:human) { Human.new(Parameters::X_SYMBOL, InputHelper) }
+  let(:human) { Human.new(Params::X_SYMBOL, InputHelper) }
 
   it 'should have symbol' do
     expect(human.symbol).to_not be_nil
@@ -14,7 +14,7 @@ describe Human do
     expect(human.find_next_location).to eq(0)
   end
 
-  it 'should move after finding location' do
+  it 'should move after finding next location' do
     human.stubs(:find_next_location).returns(1)
     expect(human.move(board)).to_not be_nil
   end

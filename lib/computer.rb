@@ -14,7 +14,7 @@ class Computer < Player
   end
 
   def find_opponent_symbol
-    (@symbol == Parameters::X_SYMBOL) ? Parameters::O_SYMBOL : Parameters::X_SYMBOL
+    (@symbol == Params::X_SYMBOL) ? Params::O_SYMBOL : Params::X_SYMBOL
   end
 
   def minimax(board, symbol, opponent_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
@@ -31,11 +31,13 @@ class Computer < Player
         move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
       end
 
-      if symbol == @symbol && (best_score == nil || score > best_score)
+      if symbol == @symbol &&
+        (best_score == nil || score > best_score)
           best_score = alpha = score
           best_move = location
       end
-      if symbol != @symbol && (best_score == nil || score < best_score)
+      if symbol == @opponent_symbol &&
+        (best_score == nil || score < best_score)
           best_score = beta = score
           best_move = location
       end

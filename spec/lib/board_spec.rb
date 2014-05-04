@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Board do
   let(:board)              { Board.new(3) }
-  let(:x_symbol)           { Parameters::X_SYMBOL }
-  let(:o_symbol)           { Parameters::O_SYMBOL }
-  let(:blank_symbol)       { Parameters::BLANK_SYMBOL }
+  let(:x_symbol)           { Params::X_SYMBOL }
+  let(:o_symbol)           { Params::O_SYMBOL }
+  let(:blank_symbol)       { Params::BLANK_SYMBOL }
   let(:board_total_size)   { board.size ** 2 }
 
   it 'should have a size' do

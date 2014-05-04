@@ -35,8 +35,8 @@ class Game
   end
 
   def state
-    return State::X_SYMBOL_WIN    if @board.win?(Parameters::X_SYMBOL)
-    return State::O_SYMBOL_WIN    if @board.win?(Parameters::O_SYMBOL)
+    return State::X_SYMBOL_WIN    if @board.win?(Params::X_SYMBOL)
+    return State::O_SYMBOL_WIN    if @board.win?(Params::O_SYMBOL)
     return State::DRAW            if @board.draw?
     return State::NOT_STARTED     if !started?
     return State::FORBIDDEN_MOVE  if forbidden_move?

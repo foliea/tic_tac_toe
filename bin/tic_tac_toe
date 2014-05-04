@@ -9,7 +9,7 @@ require 'game'
 require 'board'
 require 'human'
 require 'computer'
-require 'parameters'
+require 'params'
 require 'state'
 
 if __FILE__ == $PROGRAM_NAME

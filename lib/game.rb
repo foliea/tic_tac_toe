@@ -38,7 +38,7 @@ class Game
       @forbidden_move = true
     end
 
-    stop if state != PLAYING && state != FORBIDDEN_MOVE
+    stop if @board.over?
     return state
   end
 

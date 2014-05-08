@@ -38,17 +38,14 @@ class Computer
         move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
       end
 
-      if symbol == @symbol &&
-        (best_score == nil || score > best_score)
-          best_score = alpha = score
-          best_move = location
-      end
-      if symbol == @opponent_symbol &&
-        (best_score == nil || score < best_score)
-          best_score = beta = score
-          best_move = location
+      if save_values?(symbol, score, best_score)
+        best_score = score
+        best_move  = location
       end
 
+      alpha = best_score if !is_opponent?(symbol)
+      beta  = best_score if  is_opponent?(symbol)
+      
       board.undo_move(location)
 
       if alpha >= beta
@@ -57,6 +54,20 @@ class Computer
     end
 
     return best_move, best_score
+  end
+
+  def is_opponent?(symbol)
+    symbol == @opponent_symbol
+  end
+
+  def save_values?(symbol, score, best_score)
+    return true if best_score.nil?
+
+    if is_opponent?(symbol)
+      score < best_score
+    else
+      score > best_score
+    end
   end
 
   def get_score(board)

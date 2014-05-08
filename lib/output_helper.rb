@@ -21,7 +21,7 @@ module OutputHelper
 
     print_separator(board.size, output)
 
-    board.grid.each_slice(board.size) do |row|
+    board.to_a.each_slice(board.size) do |row|
       row.each_with_index do |square, index|
         output.print " #{square || '.'} "
         output.print '|' unless index == board.size - 1

@@ -1,8 +1,8 @@
 require 'params'
 
 class Board
-  attr_accessor :grid
   attr_reader   :size
+  attr_accessor :grid
 
   def initialize(size)
     @size = size
@@ -40,10 +40,6 @@ class Board
     squares
   end
 
-  def over?
-    draw? || win?(Params::X_SYMBOL) || win?(Params::O_SYMBOL)
-  end
-
   def draw?
     !win?(Params::X_SYMBOL) &&
     !win?(Params::O_SYMBOL) &&
@@ -55,6 +51,21 @@ class Board
       return true if pattern.all? { |index| @grid[index] == symbol }
     end
     false
+  end
+
+  def over?
+    draw? || win?(Params::X_SYMBOL) || win?(Params::O_SYMBOL)
+  end
+
+  def set(scheme)
+    scheme = scheme.gsub('X', Params::X_SYMBOL)
+    scheme = scheme.gsub('O', Params::O_SYMBOL)
+    @grid = scheme.split(//)
+    @grid.map!{ |x| (x == " " ? Params::BLANK_SYMBOL : x) }
+  end
+
+  def to_a
+    @grid
   end
 
   private

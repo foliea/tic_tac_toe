@@ -20,12 +20,4 @@ describe Launcher do
     launcher.launch
   end
 
-  # nul a enlever
-
-  it 'should launch a game' do
-    $stdin = StringIO.new('y')
-    launcher.expects(:play_game)
-    launcher.launch
-  end
-
 end

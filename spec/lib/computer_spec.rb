@@ -14,29 +14,23 @@ describe Computer do
   end
 
   it 'should find opponent symbol' do
-    expect(computer.opponent_symbol).to eq(o_symbol)
+    expect(computer.opponent_symbol).to eq(Params::O_SYMBOL)
   end
 
   it 'should win' do
-    board.grid = [ x_symbol, x_symbol,     blank_symbol,
-                   o_symbol, blank_symbol, blank_symbol,
-                   o_symbol, blank_symbol, blank_symbol ]
+    board.set('XX O  O  ')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
   it 'should counter opponent' do
-    board.grid = [ o_symbol,     o_symbol,     blank_symbol,
-                   x_symbol,     blank_symbol, blank_symbol,
-                   blank_symbol, blank_symbol, blank_symbol]
+    board.set('OO X     ')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
   it 'should draw if winning is not possible' do
-    board.grid = [ x_symbol, x_symbol, o_symbol,
-                   o_symbol, o_symbol, x_symbol,
-                   x_symbol, o_symbol, blank_symbol ]
+    board.set('XXOOOXXO ')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(8)
   end
@@ -44,17 +38,13 @@ describe Computer do
   context 'when opponent can win' do
 
     it 'should win first if winning is possible' do
-      board.grid = [ blank_symbol, o_symbol,     blank_symbol,
-                     x_symbol,     o_symbol,     blank_symbol,
-                     x_symbol,     blank_symbol, blank_symbol ]
+      board.set(' O XO X  ')
       best_move = computer.find_best_move(board)
       expect(best_move).to eq(0)
     end
 
     it 'should counter opponent first if winning is not possible' do
-      board.grid = [ o_symbol, blank_symbol, blank_symbol,
-                     x_symbol, blank_symbol, blank_symbol,
-                     x_symbol, o_symbol,     o_symbol ]
+      board.set('O  X  XOO')
       best_move = computer.find_best_move(board)
       expect(best_move).to eq(4)
     end

@@ -18,19 +18,25 @@ describe Computer do
   end
 
   it 'should win' do
-    board.set('XX O  O  ')
+    board.set('XX.
+               O..
+               O..')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
   it 'should counter opponent' do
-    board.set('OO X     ')
+    board.set('OO.
+               X..
+               ...')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
   it 'should draw if winning is not possible' do
-    board.set('XXOOOXXO ')
+    board.set('XXO
+               OOX
+               XO.')
     best_move = computer.find_best_move(board)
     expect(best_move).to eq(8)
   end
@@ -38,13 +44,17 @@ describe Computer do
   context 'when opponent can win' do
 
     it 'should win first if winning is possible' do
-      board.set(' O XO X  ')
+      board.set('.O.
+                 XO.
+                 X..')
       best_move = computer.find_best_move(board)
       expect(best_move).to eq(0)
     end
 
     it 'should counter opponent first if winning is not possible' do
-      board.set('O  X  XOO')
+      board.set('O..
+                 X..
+                 XOO')
       best_move = computer.find_best_move(board)
       expect(best_move).to eq(4)
     end

@@ -2,7 +2,6 @@ require 'params'
 
 class Board
   attr_reader   :size
-  attr_accessor :grid
 
   def initialize(size)
     @size = size
@@ -58,10 +57,12 @@ class Board
   end
 
   def set(scheme)
+    scheme = scheme.gsub(' ', '')
+    scheme = scheme.gsub("\n", '')
     scheme = scheme.gsub('X', Params::X_SYMBOL)
     scheme = scheme.gsub('O', Params::O_SYMBOL)
     @grid = scheme.split(//)
-    @grid.map!{ |x| (x == " " ? Params::BLANK_SYMBOL : x) }
+    @grid.map!{ |x| (x == "." ? Params::BLANK_SYMBOL : x) }
   end
 
   def to_a

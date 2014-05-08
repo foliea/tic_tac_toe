@@ -20,13 +20,13 @@ describe Board do
   end
 
   it "souldn't move on non empty square" do
-    board.set('X        ')
+    board.set('X........')
     expect(board.move_available?(0)).to be_false
     expect(board.move(0, x_symbol)).to be_nil
   end
 
   it 'should undo move' do
-    board.set('X        ')
+    board.set('X........')
     board.undo_move(0)
     expect(board.move_available?(0)).to be_true
   end
@@ -41,32 +41,38 @@ describe Board do
   end
 
   it 'should decrease empty squares' do
-    board.set('X        ')
+    board.set('X........')
     expect(board.empty_squares.size).to be < board_total_size
   end
 
   it 'should detect draw' do
-    board.set('XOXXOXOXO')
+    board.set('XOX
+               XOX
+               OXO')
     expect(board).to be_draw
   end
 
   it 'should find if square has symbol' do
-    board.set('X        ')
+    board.set('X........')
     expect(board.square_has_symbol?(0, x_symbol)).to be_true
   end
 
   it 'should detect when a player win on a row' do
-    board.set('XXX      ')
+    board.set('XXX......')
     expect(board.win?(x_symbol)).to be_true
   end
 
   it 'should detect when a player win on a column' do
-    board.set('X  X  X  ')
+    board.set('X..
+               X..
+               X..')
     expect(board.win?(x_symbol)).to be_true
   end
 
   it 'should detect when a player win on a diagonale' do
-    board.set('X   X   X')
+    board.set('X..
+               .X.
+               ..X')
     expect(board.win?(x_symbol)).to be_true
   end
 end

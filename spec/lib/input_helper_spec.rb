@@ -1,11 +1,12 @@
 require 'spec_helper'
+require 'input_helper'
 
 describe InputHelper do
   let(:output) { StringIO.new }
 
   it 'should ask for next location from stdin' do
     input = StringIO.new('1')
-    expect(InputHelper.ask_for_next_location(input, output)).to eq(0)
+    expect(InputHelper.ask_for_next_location(input, output)).to eq(1)
   end
 
   it 'should ask for new game' do

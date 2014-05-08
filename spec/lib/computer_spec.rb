@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'computer'
+require 'board'
 
 describe Computer do
   let(:x_symbol)     { Params::X_SYMBOL }
@@ -19,7 +21,7 @@ describe Computer do
     board.grid = [ x_symbol, x_symbol,     blank_symbol,
                    o_symbol, blank_symbol, blank_symbol,
                    o_symbol, blank_symbol, blank_symbol ]
-    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
@@ -27,7 +29,7 @@ describe Computer do
     board.grid = [ o_symbol,     o_symbol,     blank_symbol,
                    x_symbol,     blank_symbol, blank_symbol,
                    blank_symbol, blank_symbol, blank_symbol]
-    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    best_move = computer.find_best_move(board)
     expect(best_move).to eq(2)
   end
 
@@ -35,7 +37,7 @@ describe Computer do
     board.grid = [ x_symbol, x_symbol, o_symbol,
                    o_symbol, o_symbol, x_symbol,
                    x_symbol, o_symbol, blank_symbol ]
-    best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+    best_move = computer.find_best_move(board)
     expect(best_move).to eq(8)
   end
 
@@ -45,7 +47,7 @@ describe Computer do
       board.grid = [ blank_symbol, o_symbol,     blank_symbol,
                      x_symbol,     o_symbol,     blank_symbol,
                      x_symbol,     blank_symbol, blank_symbol ]
-      best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+      best_move = computer.find_best_move(board)
       expect(best_move).to eq(0)
     end
 
@@ -53,7 +55,7 @@ describe Computer do
       board.grid = [ o_symbol, blank_symbol, blank_symbol,
                      x_symbol, blank_symbol, blank_symbol,
                      x_symbol, o_symbol,     o_symbol ]
-      best_move, best_score = computer.minimax(board, x_symbol, o_symbol)
+      best_move = computer.find_best_move(board)
       expect(best_move).to eq(4)
     end
 

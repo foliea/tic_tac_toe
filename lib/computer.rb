@@ -1,21 +1,28 @@
-require 'player'
+require 'params'
 
-class Computer < Player
-  attr_accessor :symbol, :opponent_symbol
+class Computer
+  attr_reader :symbol, :opponent_symbol
 
   def initialize(symbol)
-    super(symbol)
+    @symbol = symbol
     @opponent_symbol = find_opponent_symbol
   end
 
   def move(board)
-    best_move, best_score = minimax(board, @symbol, @opponent_symbol)
-    super(board, best_move)
+    best_move = find_best_move(board)
+    board.move(best_move, @symbol)
   end
 
   def find_opponent_symbol
     (@symbol == Params::X_SYMBOL) ? Params::O_SYMBOL : Params::X_SYMBOL
   end
+
+  def find_best_move(board)
+    best_move, best_score = minimax(board, @symbol, @opponent_symbol)
+    return best_move
+  end
+
+  private
 
   def minimax(board, symbol, opponent_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
     best_score = nil
@@ -25,7 +32,7 @@ class Computer < Player
     board.empty_squares.each do |location|
       board.move(location, symbol)
 
-      if board.draw? || board.win?(@symbol) || board.win?(@opponent_symbol)
+      if board.over?
         score = get_score(board) * max_depth(board) / depth
       else
         move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
@@ -51,8 +58,6 @@ class Computer < Player
 
     return best_move, best_score
   end
-
-  private
 
   def get_score(board)
     if board.win?(@symbol)

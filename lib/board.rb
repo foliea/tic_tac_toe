@@ -1,3 +1,5 @@
+require 'params'
+
 class Board
   attr_accessor :grid
   attr_reader   :size
@@ -36,6 +38,10 @@ class Board
       squares << location if move_available?(location)
     end
     squares
+  end
+
+  def over?
+    draw? || win?(Params::X_SYMBOL) || win?(Params::O_SYMBOL)
   end
 
   def draw?

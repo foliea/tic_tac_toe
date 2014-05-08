@@ -1,17 +1,23 @@
+require 'game'
+
 module OutputHelper
   extend self
 
+  def clear_screen
+    system('clear')
+  end
+
   def print_state(state, output = $stdout)
     [
-      [State::X_SYMBOL_WIN,   "#{Params::X_SYMBOL} wins !"],
-      [State::O_SYMBOL_WIN,   "#{Params::O_SYMBOL} wins !"],
-      [State::DRAW,           "It's a draw !"],
-      [State::FORBIDDEN_MOVE, "Forbidden move !"]
+      [Game::X_SYMBOL_WIN,   "#{Params::X_SYMBOL} wins !"],
+      [Game::O_SYMBOL_WIN,   "#{Params::O_SYMBOL} wins !"],
+      [Game::DRAW,           "It's a draw !"],
+      [Game::FORBIDDEN_MOVE, "Forbidden move !"]
     ].each { |s, msg| output.puts msg if state == s }
   end
 
   def print_board(board, output = $stdout)
-    system('clear')
+    clear_screen
 
     print_separator(board.size, output)
 

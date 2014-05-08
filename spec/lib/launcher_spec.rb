@@ -11,14 +11,6 @@ describe Launcher do
     expect(launcher.player_two.class).to eq(Computer)
   end
 
-  it 'should create a board' do
-    expect(launcher.board).to_not be_nil
-  end
-
-  it 'should create a game' do
-    expect(launcher.game).to_not be_nil
-  end
-
   it 'should launch a game' do
     $stdin = StringIO.new('y')
     launcher.expects(:play_game)

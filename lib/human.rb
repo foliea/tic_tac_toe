@@ -1,19 +1,17 @@
-require 'player'
-
-class Human < Player
+class Human
   attr_reader :symbol
 
   def initialize symbol, input
-    @input = input
-    super(symbol)
+    @symbol = symbol
+    @input  = input
   end
 
   def move(board)
     next_location = find_next_location
-    super(board, next_location)
+    board.move(next_location, @symbol)
   end
 
   def find_next_location
-    @input.ask_for_next_location
+    @input.ask_for_next_location - 1
   end
 end

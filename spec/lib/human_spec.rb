@@ -1,4 +1,7 @@
 require 'spec_helper'
+require 'input_helper'
+require 'board'
+require 'human'
 
 describe Human do
   let(:board) { Board.new(3) }

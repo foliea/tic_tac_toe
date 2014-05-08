@@ -1,4 +1,9 @@
 require 'spec_helper'
+require 'game'
+require 'board'
+require 'human'
+require 'computer'
+require 'input_helper'
 
 describe Game do
   let(:x_symbol)   { Params::X_SYMBOL }
@@ -22,7 +27,7 @@ describe Game do
 
   it 'should detect if its started' do
     expect(game.started?).to eq(false)
-    expect(game.state).to eq(State::NOT_STARTED)
+    expect(game.state).to eq(Game::NOT_STARTED)
   end
 
   it 'should start' do
@@ -36,7 +41,7 @@ describe Game do
   end
 
   it 'should be started to play' do
-    expect(game.play).to eq(State::NOT_STARTED)
+    expect(game.play).to eq(Game::NOT_STARTED)
   end
 
   it "should stop" do
@@ -57,7 +62,7 @@ describe Game do
 
     it 'should return state winner' do
       game.board.stubs(:win?).returns(x_symbol)
-      expect(game.state).to eq(State::X_SYMBOL_WIN)
+      expect(game.state).to eq(Game::X_SYMBOL_WIN)
     end
   end
 
@@ -65,7 +70,7 @@ describe Game do
 
     it 'should return state draw' do
       game.board.stubs(:draw?).returns(true)
-      expect(game.state).to eq(State::DRAW)
+      expect(game.state).to eq(Game::DRAW)
     end
   end
 
@@ -73,7 +78,7 @@ describe Game do
 
     it 'should return state playing' do
       game.stubs(:started?).returns(true)
-      expect(game.state).to eq(State::PLAYING)
+      expect(game.state).to eq(Game::PLAYING)
     end
   end
 
@@ -86,13 +91,13 @@ describe Game do
       game.stubs(:started?).returns(true)
       game.switch_players
       game.play
-      expect(game.state).to eq(State::FORBIDDEN_MOVE)
+      expect(game.state).to eq(Game::FORBIDDEN_MOVE)
     end
 
     it 'should return state forbidden move' do
       game.stubs(:started?).returns(true)
       game.stubs(:forbidden_move?).returns(true)
-      expect(game.state).to eq(State::FORBIDDEN_MOVE)
+      expect(game.state).to eq(Game::FORBIDDEN_MOVE)
     end
   end
 
@@ -101,8 +106,7 @@ describe Game do
     it 'should swap player' do
       game.stubs(:started?).returns(true)
       game.play
-      expect(game.player_two).to eq(player_one)
-      expect(game.player_one).to eq(player_two)
+      expect(game.current_player).to eq(player_two)
     end
   end
 end

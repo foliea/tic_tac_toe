@@ -62,7 +62,7 @@ class Board
     scheme = scheme.gsub('X', Params::X_SYMBOL)
     scheme = scheme.gsub('O', Params::O_SYMBOL)
     @grid = scheme.split(//)
-    @grid.map!{ |x| (x == "." ? Params::BLANK_SYMBOL : x) }
+    @grid.map!{ |x| (x == '.' ? Params::BLANK_SYMBOL : x) }
   end
 
   def to_a

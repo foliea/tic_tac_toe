@@ -1,5 +1,5 @@
 module Params
-  X_SYMBOL     = 'P'.freeze
-  O_SYMBOL     = 'C'.freeze
-  BLANK_SYMBOL = nil.freeze
+  X_SYMBOL     = 'X'
+  O_SYMBOL     = 'O'
+  BLANK_SYMBOL = nil
 end

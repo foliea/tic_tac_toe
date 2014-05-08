@@ -3,11 +3,8 @@ require 'computer'
 require 'board'
 
 describe Computer do
-  let(:x_symbol)     { Params::X_SYMBOL }
-  let(:o_symbol)     { Params::O_SYMBOL }
-  let(:blank_symbol) { Params::BLANK_SYMBOL }
   let(:board)        { Board.new(3) }
-  let(:computer)     { Computer.new(x_symbol) }
+  let(:computer)     { Computer.new(Params::X_SYMBOL) }
 
   it 'should have symbol' do
     expect(computer.symbol).to_not be_nil

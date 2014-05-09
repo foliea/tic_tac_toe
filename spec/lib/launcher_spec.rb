@@ -20,4 +20,12 @@ describe Launcher do
     launcher.launch
   end
 
+  it 'should play if game is started' do
+    launcher.game.start
+    expect(launcher.play?).to be_true
+  end
+
+  it 'should run while it can play' do
+    launcher.stubs(:play?).returns(true)
+  end
 end

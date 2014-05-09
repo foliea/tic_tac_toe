@@ -13,19 +13,8 @@ class Launcher
     play_game if answer == 'y'
   end
 
-  def play_game
-    @game.start
-
-    OutputHelper.print_board(@board)
-
-    while(@game.started?)
-      @game.play
-
-      OutputHelper.print_board(@board)
-      OutputHelper.print_state(@game.state)
-    end
-
-    launch
+  def play?
+    @game.started?
   end
 
 end

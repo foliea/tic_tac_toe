@@ -57,11 +57,11 @@ class Board
   end
 
   def set(scheme)
-    scheme = scheme.gsub(' ', '')
-    scheme = scheme.gsub("\n", '')
-    scheme = scheme.gsub('X', Params::X_SYMBOL)
-    scheme = scheme.gsub('O', Params::O_SYMBOL)
-    @grid = scheme.split(//)
+    @grid = scheme.gsub(' ',  '')
+                  .gsub("\n", '')
+                  .gsub('X', Params::X_SYMBOL)
+                  .gsub('O', Params::O_SYMBOL)
+                  .split(//)
     @grid.map!{ |x| (x == '.' ? Params::BLANK_SYMBOL : x) }
   end
 

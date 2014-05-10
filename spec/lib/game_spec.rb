@@ -19,7 +19,11 @@ describe Game do
 
   it 'should have player two' do
     expect(game.player_two).to_not be_nil
-  end
+	end
+
+	it 'should set current_player to player_two' do
+		expect(game.current_player).to eq(player_one)
+	end
 
   it 'should create a board' do
     expect(game.board).to_not be_nil

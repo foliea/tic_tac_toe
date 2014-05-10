@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'output_helper'
 require 'stringio'
+require 'output_helper'
 require 'board'
 
 describe OutputHelper do

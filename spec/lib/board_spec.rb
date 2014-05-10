@@ -81,5 +81,9 @@ describe Board do
                .X.
                ..X')
     expect(board.win?(x_symbol)).to be_true
-  end
+	end
+
+	it 'should be representable as an array' do
+		expect(board.to_a.class).to eq(Array) 
+	end
 end

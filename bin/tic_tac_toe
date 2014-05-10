@@ -10,7 +10,6 @@ require 'board'
 require 'human'
 require 'computer'
 require 'params'
-require 'state'
 
 if __FILE__ == $PROGRAM_NAME
   launcher = Launcher.new

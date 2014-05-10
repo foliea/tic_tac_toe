@@ -51,6 +51,13 @@ describe Board do
                OXO')
     expect(board).to be_draw
   end
+	
+	it 'should detect if a game is over' do
+    board.set('XOX
+               XOX
+               OXO')
+    expect(board.over?).to be_true
+  end
 
   it 'should find if square has symbol' do
     board.set('X........')

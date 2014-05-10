@@ -24,8 +24,15 @@ describe Launcher do
     launcher.game.start
     expect(launcher.play?).to be_true
   end
+ 
+ 	# Is this test really necessary ?	
+	it 'should play while it can play' do
+  	launcher.stubs(:play)
+    launcher.stubs(:display)
 
-  it 'should run while it can play' do
-    launcher.stubs(:play?).returns(true)
+		launcher.stubs(:play?).returns(true, false)
+    launcher.expects(:play)
+    launcher.run
   end
+
 end

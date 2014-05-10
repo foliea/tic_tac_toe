@@ -9,12 +9,31 @@ class Launcher
   end
 
   def launch
-    answer = InputHelper.ask_for_new_game
-    play_game if answer == 'y'
+    if InputHelper.ask_for_new_game == 'y'
+      @game.start
+      display
+      run
+    end
+		#launch => won't stop after answering something else than y
+  end
+
+  def run
+    while(play?)
+      play
+      display
+    end
   end
 
   def play?
     @game.started?
   end
 
+  def play
+    @game.play
+  end
+
+  def display
+    OutputHelper.print_board(@game.board)
+    OutputHelper.print_state(@game.state)
+  end
 end

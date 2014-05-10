@@ -1,3 +1,10 @@
+require 'input_helper'
+require 'output_helper'
+require 'board'
+require 'game'
+require 'human'
+require 'computer'
+
 class Launcher
   attr_reader :game, :board, :player_one, :player_two
 

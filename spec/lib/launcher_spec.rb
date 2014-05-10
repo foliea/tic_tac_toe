@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'stringio'
 require 'launcher'
-require 'input_helper'
 
 describe Launcher do
   let(:launcher) { Launcher.new }

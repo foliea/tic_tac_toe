@@ -3,13 +3,6 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'launcher'
-require 'input_helper'
-require 'output_helper'
-require 'game'
-require 'board'
-require 'human'
-require 'computer'
-require 'params'
 
 if __FILE__ == $PROGRAM_NAME
   launcher = Launcher.new

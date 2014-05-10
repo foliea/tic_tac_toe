@@ -52,7 +52,7 @@ describe Board do
     expect(board).to be_draw
   end
 	
-	it 'should detect if a game is over' do
+  it 'should detect if a game is over' do
     board.set('XOX
                XOX
                OXO')
@@ -83,7 +83,8 @@ describe Board do
     expect(board.win?(x_symbol)).to be_true
   end
 
-	it 'should be representable as an array' do
-		expect(board.to_a.class).to eq(Array) 
-	end
+  it 'should be representable as an array' do
+    expect(board.to_a.class).to eq(Array) 
+  end
+  
 end

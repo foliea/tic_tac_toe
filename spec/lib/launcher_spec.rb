@@ -14,14 +14,21 @@ describe Launcher do
   end
 
   it 'should ask for new game' do
-    $stdin = StringIO.new('n')
     InputHelper.expects(:ask_for_new_game)
-    launcher.launch
+    launcher.ask_for_new_game
   end
 
   it 'should start a game' do
     launcher.game.expects(:start)
     launcher.start
+  end
+
+  it 'should be able to play multiple games in a row' do
+    launcher.stubs(:display)
+    launcher.stubs(:ask_for_new_game).returns('y', 'y', 'n')
+    
+    launcher.expects(:run).at_least(2)
+    launcher.launch
   end
 
   it 'should play if game is started' do

@@ -21,7 +21,7 @@ class Launcher
   end
 
   def launch
-    while(answer = InputHelper.ask_for_new_game)
+    while(answer = ask_for_new_game)
       case answer
       when 'y'
         start
@@ -50,6 +50,10 @@ class Launcher
 
   def play
     @game.play
+  end
+
+  def ask_for_new_game
+    InputHelper.ask_for_new_game
   end
 
   def display

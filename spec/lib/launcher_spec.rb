@@ -14,14 +14,14 @@ describe Launcher do
   end
 
   it 'should ask for new game' do
-    $stdin = StringIO.new('y')
+    $stdin = StringIO.new('n')
     InputHelper.expects(:ask_for_new_game)
     launcher.launch
   end
 
   it 'should start a game' do
+    launcher.game.expects(:start)
     launcher.start
-    expect(launcher.game.started?).to be_true
   end
 
   it 'should play if game is started' do
@@ -29,7 +29,7 @@ describe Launcher do
     expect(launcher.play?).to be_true
   end
  
-  it 'should run a game until this end' do
+  it 'should run a game until the end' do
     game = Game.new(Board.new(3), 
                     Computer.new(Params::X_SYMBOL),
                     Computer.new(Params::O_SYMBOL))
@@ -38,19 +38,6 @@ describe Launcher do
     launcher.start
     launcher.run
     expect(launcher.play?).to be_false
-  end
-
-  # Useless tests ?
-
-  context 'when game is running' do
-
-    it 'should display' do
-      launcher.stubs(:play)
-      launcher.stubs(:display)
-      launcher.stubs(:play?).returns(true, false)
-      launcher.expects(:display)
-      launcher.run
-    end
   end
 
   context 'when displaying' do
@@ -68,5 +55,5 @@ describe Launcher do
       launcher.display
     end
   end
-  
+
 end

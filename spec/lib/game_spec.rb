@@ -93,7 +93,7 @@ describe Game do
       $stdout = StringIO.new
 
       game.stubs(:started?).returns(true)
-      game.switch_players
+      game.switch_current_player
       game.play
       expect(game.state).to eq(Game::FORBIDDEN_MOVE)
     end

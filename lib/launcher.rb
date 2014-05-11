@@ -21,7 +21,15 @@ class Launcher
   end
 
   def launch
-    if InputHelper.ask_for_new_game == 'y'
+    while(answer = InputHelper.ask_for_new_game)
+      case answer
+      when 'y'
+        start
+        display
+        run
+      when 'n'
+        break
+      end 
     end
   end
 

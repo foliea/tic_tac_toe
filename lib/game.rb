@@ -33,7 +33,7 @@ class Game
 
     if @current_player.move(@board)
       @forbidden_move = false
-      switch_players
+      switch_current_player
     else
       @forbidden_move = true
     end
@@ -51,7 +51,7 @@ class Game
     return PLAYING
   end
 
-  def switch_players
+  def switch_current_player
     @current_player = @current_player == @player_one ? @player_two : @player_one
   end
 end

@@ -27,7 +27,7 @@ class Computer
   def minimax(board, symbol, opponent_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
     best_score = nil
     best_move  = nil
-    depth +=1
+    depth += 1
 
     board.empty_squares.each do |location|
       board.move(location, symbol)

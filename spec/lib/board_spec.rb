@@ -51,7 +51,7 @@ describe Board do
                OXO')
     expect(board).to be_draw
   end
-	
+
   it 'should detect if a game is over' do
     board.set('XOX
                XOX

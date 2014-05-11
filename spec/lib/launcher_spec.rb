@@ -30,13 +30,17 @@ describe Launcher do
   end
  
   it 'should run a game until this end' do
-    game = Game.new(Board.new(3), Computer.new(Params::X_SYMBOL), Computer.new(Params::O_SYMBOL))
-	
+    game = Game.new(Board.new(3), 
+                    Computer.new(Params::X_SYMBOL),
+                    Computer.new(Params::O_SYMBOL))
     launcher.set(game)
+    launcher.stubs(:display)    
     launcher.start
     launcher.run
     expect(launcher.play?).to be_false
   end
+
+  # Useless tests ?
 
   context 'when game is running' do
 
@@ -50,17 +54,16 @@ describe Launcher do
   end
 
   context 'when displaying' do
-    module OutputHelper
-      def self.print_board(*args) ; end
-      def self.print_state(*args) ; end
-    end
-
+   
     it 'should print board' do
+      OutputHelper.stubs(:print_board) 
       OutputHelper.expects(:print_board).with(launcher.game.board)
       launcher.display
     end
     
     it 'should print state' do
+      OutputHelper.stubs(:print_board)
+      OutputHelper.stubs(:print_state) 
       OutputHelper.expects(:print_state).with(launcher.game.state)
       launcher.display
     end

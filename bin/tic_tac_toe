@@ -5,7 +5,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'launcher'
 
 if __FILE__ == $PROGRAM_NAME
-	launcher = Launcher.new
+  launcher = Launcher.new
 
-	launcher.launch
+  launcher.launch
 end

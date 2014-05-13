@@ -6,7 +6,7 @@ require 'human'
 require 'computer'
 
 class Launcher
-  attr_reader   :game, :board, :player_one, :player_two
+  attr_reader :game, :player_one, :player_two
 
   def initialize
     @board      = Board.new(3)

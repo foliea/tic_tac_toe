@@ -18,7 +18,7 @@ describe Launcher do
     launcher.ask_for_new_game
   end
 
-  it 'should start a game' do
+  it 'should be able to start a game' do
     launcher.game.expects(:start)
     launcher.start
   end
@@ -31,7 +31,7 @@ describe Launcher do
     launcher.launch
   end
 
-  it 'should play if game is started' do
+  it 'should play if a game is started' do
     launcher.start
     expect(launcher.play?).to be_true
   end

@@ -23,14 +23,6 @@ describe Launcher do
     launcher.start
   end
 
-  it 'should be able to play multiple games in a row' do
-    launcher.stubs(:display)
-    launcher.stubs(:ask_for_new_game).returns('y', 'y', 'n')
-    
-    launcher.expects(:run).at_least(2)
-    launcher.launch
-  end
-
   it 'should play if a game is started' do
     launcher.start
     expect(launcher.play?).to be_true

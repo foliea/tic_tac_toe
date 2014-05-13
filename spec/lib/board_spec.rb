@@ -56,7 +56,7 @@ describe Board do
     board.set('XOX
                XOX
                OXO')
-    expect(board.over?).to be_true
+    expect(board).to be_over
   end
 
   it 'should find if square has symbol' do
@@ -83,7 +83,7 @@ describe Board do
     expect(board.win?(x_symbol)).to be_true
   end
 
-  it 'should be representable as an array' do
+  it 'should be convertible to an array' do
     expect(board.to_a.class).to eq(Array) 
   end
   

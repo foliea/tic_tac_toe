@@ -12,8 +12,7 @@ class Launcher
     @board      = Board.new(3)
     @player_one = Human.new(Params::X_SYMBOL, InputHelper)
     @player_two = Computer.new(Params::O_SYMBOL)
-
-    set(Game.new(@board, @player_one, @player_two))
+    @game       = Game.new(@board, @player_one, @player_two)
   end
 
   def set(game)

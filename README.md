@@ -1,6 +1,6 @@
 ## Tic Tac Toe
 
-A Tic Tac Toe Game for 8th Light submission.
+A Tic Tac Toe Game with unbeatable AI.
 
 Run this command to launch the game from the `/bin` directory :
 

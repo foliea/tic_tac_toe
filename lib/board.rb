@@ -73,10 +73,7 @@ class Board
 
   def get_winning_patterns
     winning_patterns = Array.new
-
-    diagonale_1 = Array.new
-    diagonale_2 = Array.new
-
+    
     @size.times do |i|
       row    = Array.new
       column = Array.new
@@ -84,16 +81,23 @@ class Board
       @size.times do |j|
         row    << i * @size + j
         column << j * @size + i
-      end
-
-      diagonale_1 << (i)     * (@size + 1)
-      diagonale_2 << (i + 1) * (@size - 1)
-
+      end    
       winning_patterns << row
       winning_patterns << column
     end
-    winning_patterns << diagonale_1
-    winning_patterns << diagonale_2
+    winning_patterns.concat(get_winning_diagonales)
   end
 
+  def get_winning_diagonales
+    winning_diagonales = Array.new
+    diagonale_1        = Array.new
+    diagonale_2        = Array.new
+    
+    @size.times do |i|
+      diagonale_1 << i * (@size + 1)
+      diagonale_2 << (i + 1) * (@size - 1)
+    end
+    winning_diagonales << diagonale_1
+    winning_diagonales << diagonale_2
+  end
 end

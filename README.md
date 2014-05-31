@@ -1,4 +1,5 @@
-## Tic Tac Toe [![Code Climate](https://codeclimate.com/github/folieadrien/tic_tac_toe.png)](https://codeclimate.com/github/folieadrien/tic_tac_toe)
+## Tic Tac Toe
+[![Code Climate](https://codeclimate.com/github/folieadrien/tic_tac_toe.png)](https://codeclimate.com/github/folieadrien/tic_tac_toe)
 
 A Tic Tac Toe Game with unbeatable AI.
 

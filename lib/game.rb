@@ -39,7 +39,7 @@ class Game
     end
 
     stop if @board.over?
-    return state
+    state
   end
 
   def state

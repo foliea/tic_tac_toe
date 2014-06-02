@@ -19,7 +19,7 @@ class Computer
 
   def find_best_move(board)
     best_move, best_score = minimax(board, @symbol, @opponent_symbol)
-    return best_move
+    best_move
   end
 
   private
@@ -75,11 +75,11 @@ class Computer
 
   def get_score(board)
     if board.win?(@symbol)
-      return 1
+      1
     elsif board.win?(@opponent_symbol)
-      return -1
+      -1
     else
-      return 0
+      0 
     end
   end
 

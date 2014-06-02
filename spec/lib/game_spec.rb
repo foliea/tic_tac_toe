@@ -13,42 +13,42 @@ describe Game do
   let(:board)      { Board.new(3) }
   let(:game)       { Game.new(board, player_one, player_two) }
 
-  it 'should have player one' do
+  it 'must have player one' do
     expect(game.player_one).to_not be_nil
   end
 
-  it 'should have player two' do
+  it 'must have player two' do
     expect(game.player_two).to_not be_nil
   end
 
-  it 'should set current_player to player_two' do
+  it 'sets current_player to player_two' do
     expect(game.current_player).to eq(player_one)
   end
 
-  it 'should create a board' do
+  it 'creates a board' do
     expect(game.board).to_not be_nil
   end
 
-  it 'should detect if its started' do
+  it 'detects if its started' do
     expect(game.started?).to eq(false)
     expect(game.state).to eq(Game::NOT_STARTED)
   end
 
-  it 'should start' do
+  it 'starts' do
     game.start
     expect(game.started?).to eq(true)
   end
 
-  it 'should reset board on start' do
+  it 'resets board on start' do
     game.board.expects(:reset)
     game.start
   end
 
-  it 'should be started to play' do
+  it 'must be started to play' do
     expect(game.play).to eq(Game::NOT_STARTED)
   end
 
-  it 'should stop' do
+  it 'stops' do
     game.stop
     expect(game.started?).to eq(false)
   end
@@ -64,7 +64,7 @@ describe Game do
 
   context 'when there is a winner' do
 
-    it 'should return state winner' do
+    it 'returns state winner' do
       game.board.stubs(:win?).returns(x_symbol)
       expect(game.state).to eq(Game::X_SYMBOL_WIN)
     end
@@ -72,7 +72,7 @@ describe Game do
 
   context 'when draw' do
 
-    it 'should return state draw' do
+    it 'returns state draw' do
       game.board.stubs(:draw?).returns(true)
       expect(game.state).to eq(Game::DRAW)
     end
@@ -80,7 +80,7 @@ describe Game do
 
   context 'when playing' do
 
-    it 'should return state playing' do
+    it 'returns state playing' do
       game.stubs(:started?).returns(true)
       expect(game.state).to eq(Game::PLAYING)
     end
@@ -88,7 +88,7 @@ describe Game do
 
   context 'when a player attempt to do a forbidden move' do
 
-    it 'should set forbidden move' do
+    it 'sets forbidden move' do
       $stdin  = StringIO.new('0')
       $stdout = StringIO.new
 
@@ -98,7 +98,7 @@ describe Game do
       expect(game.state).to eq(Game::FORBIDDEN_MOVE)
     end
 
-    it 'should return state forbidden move' do
+    it 'returns state forbidden move' do
       game.stubs(:started?).returns(true)
       game.stubs(:forbidden_move?).returns(true)
       expect(game.state).to eq(Game::FORBIDDEN_MOVE)
@@ -107,7 +107,7 @@ describe Game do
 
   context 'between each call to play' do
 
-    it 'should swap player' do
+    it 'swaps player' do
       game.stubs(:started?).returns(true)
       game.play
       expect(game.current_player).to eq(player_two)

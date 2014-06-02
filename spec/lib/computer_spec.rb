@@ -6,15 +6,15 @@ describe Computer do
   let(:board)        { Board.new(3) }
   let(:computer)     { Computer.new(Params::X_SYMBOL) }
 
-  it 'should have symbol' do
+  it 'must have symbol' do
     expect(computer.symbol).to_not be_nil
   end
 
-  it 'should find opponent symbol' do
+  it 'finds opponent symbol' do
     expect(computer.opponent_symbol).to eq(Params::O_SYMBOL)
   end
 
-  it 'should win' do
+  it 'wins' do
     board.set('XX.
                O..
                O..')
@@ -22,7 +22,7 @@ describe Computer do
     expect(best_move).to eq(2)
   end
 
-  it 'should counter opponent' do
+  it 'counters opponent' do
     board.set('OO.
                X..
                ...')
@@ -30,7 +30,7 @@ describe Computer do
     expect(best_move).to eq(2)
   end
 
-  it 'should draw if winning is not possible' do
+  it 'draws if winning is not possible' do
     board.set('XXO
                OOX
                XO.')
@@ -40,7 +40,7 @@ describe Computer do
 
   context 'when opponent can win' do
 
-    it 'should win first if winning is possible' do
+    it 'wins first if winning is possible' do
       board.set('.O.
                  XO.
                  X..')
@@ -48,7 +48,7 @@ describe Computer do
       expect(best_move).to eq(0)
     end
 
-    it 'should counter opponent first if winning is not possible' do
+    it 'counters opponent first if winning is not possible' do
       board.set('O..
                  X..
                  XOO')

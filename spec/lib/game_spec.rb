@@ -19,7 +19,7 @@ describe Game do
 
   it 'should have player two' do
     expect(game.player_two).to_not be_nil
-	end
+  end
 
   it 'should set current_player to player_two' do
     expect(game.current_player).to eq(player_one)
@@ -48,7 +48,7 @@ describe Game do
     expect(game.play).to eq(Game::NOT_STARTED)
   end
 
-  it "should stop" do
+  it 'should stop' do
     game.stop
     expect(game.started?).to eq(false)
   end

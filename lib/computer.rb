@@ -18,7 +18,7 @@ class Computer
   end
 
   def find_best_move(board)
-    best_move, best_score = minimax(board, @symbol, @opponent_symbol)
+    best_move, _best_score = minimax(board, @symbol, @opponent_symbol)
     best_move
   end
 
@@ -35,7 +35,7 @@ class Computer
       if board.over?
         score = get_score(board) * max_depth(board) / depth
       else
-        move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
+        _move_position, score = minimax(board, opponent_symbol, symbol, alpha, beta, depth)
       end
 
       if keep_score?(symbol, score, best_score)
@@ -48,15 +48,13 @@ class Computer
       else
         alpha = best_score
       end
-      
+
       board.undo_move(location)
 
-      if alpha >= beta
-        break
-      end
-    end
+      break if alpha >= beta
 
-    return best_move, best_score
+    end
+    [best_move, best_score]
   end
 
   def opponent_move?(symbol)
@@ -79,7 +77,7 @@ class Computer
     elsif board.win?(@opponent_symbol)
       -1
     else
-      0 
+      0
     end
   end
 

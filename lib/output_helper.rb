@@ -12,7 +12,7 @@ module OutputHelper
       [Game::X_SYMBOL_WIN,   "#{Params::X_SYMBOL} wins !"],
       [Game::O_SYMBOL_WIN,   "#{Params::O_SYMBOL} wins !"],
       [Game::DRAW,           "It's a draw !"],
-      [Game::FORBIDDEN_MOVE, "Forbidden move !"]
+      [Game::FORBIDDEN_MOVE, 'Forbidden move !']
     ].each { |s, msg| output.puts msg if state == s }
   end
 

@@ -5,7 +5,7 @@ describe Board do
   let(:board)              { Board.new(3) }
   let(:x_symbol)           { Params::X_SYMBOL }
   let(:o_symbol)           { Params::O_SYMBOL }
-  let(:board_total_size)   { board.size ** 2 }
+  let(:board_total_size)   { board.size**2 }
 
   it 'should have a size' do
     expect(board.size).to_not be_nil
@@ -84,7 +84,7 @@ describe Board do
   end
 
   it 'should be convertible to an array' do
-    expect(board.to_a.class).to eq(Array) 
+    expect(board.to_a.class).to eq(Array)
   end
-  
+
 end

@@ -1,8 +1,9 @@
 class Game
-  attr_reader :started, :forbidden_move, :board, :player_one, :player_two, :current_player
+  attr_reader :started,    :forbidden_move, :board,
+              :player_one, :player_two,     :current_player
 
-  alias :started?        :started
-  alias :forbidden_move? :forbidden_move
+  alias_method :started?,        :started
+  alias_method :forbidden_move?, :forbidden_move
 
   PLAYING        = 0
   NOT_STARTED    = 1
@@ -29,7 +30,7 @@ class Game
   end
 
   def play
-    return state if !started?
+    return state unless started?
 
     if @current_player.move(@board)
       @forbidden_move = false
@@ -43,12 +44,12 @@ class Game
   end
 
   def state
-    return X_SYMBOL_WIN    if @board.win?(Params::X_SYMBOL)
-    return O_SYMBOL_WIN    if @board.win?(Params::O_SYMBOL)
-    return DRAW            if @board.draw?
-    return NOT_STARTED     if !started?
-    return FORBIDDEN_MOVE  if forbidden_move?
-    return PLAYING
+    return X_SYMBOL_WIN    if     @board.win?(Params::X_SYMBOL)
+    return O_SYMBOL_WIN    if     @board.win?(Params::O_SYMBOL)
+    return DRAW            if     @board.draw?
+    return NOT_STARTED     unless started?
+    return FORBIDDEN_MOVE  if     forbidden_move?
+    PLAYING
   end
 
   def switch_current_player

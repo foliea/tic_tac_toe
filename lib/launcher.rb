@@ -20,7 +20,7 @@ class Launcher
   end
 
   def launch
-    while(answer = ask_for_new_game)
+    while (answer = ask_for_new_game)
       case answer
       when 'y'
         start
@@ -28,12 +28,12 @@ class Launcher
         run
       when 'n'
         break
-      end 
+      end
     end
   end
 
   def run
-    while(play?)
+    while play?
       play
       display
     end
@@ -59,5 +59,4 @@ class Launcher
     OutputHelper.print_board(@game.board)
     OutputHelper.print_state(@game.state)
   end
-
 end

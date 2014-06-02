@@ -5,8 +5,8 @@ class Board
 
   def initialize(size)
     @size = size
-    @grid = Array.new(@size ** 2, Params::BLANK_SYMBOL)
-    @winning_patterns = get_winning_patterns
+    @grid = Array.new(@size**2, Params::BLANK_SYMBOL)
+    @winning_patterns = winning_patterns
   end
 
   def reset
@@ -32,7 +32,7 @@ class Board
   end
 
   def empty_squares
-    squares = Array.new
+    squares = []
     @grid.each_index do |location|
       squares << location if move_available?(location)
     end
@@ -62,7 +62,7 @@ class Board
                   .gsub('X', Params::X_SYMBOL)
                   .gsub('O', Params::O_SYMBOL)
                   .split(//)
-    @grid.map!{ |x| (x == '.' ? Params::BLANK_SYMBOL : x) }
+    @grid.map! { |x| (x == '.' ? Params::BLANK_SYMBOL : x) }
   end
 
   def to_a
@@ -71,28 +71,28 @@ class Board
 
   private
 
-  def get_winning_patterns
-    winning_patterns = Array.new
-    
+  def winning_patterns
+    winning_patterns = []
+
     @size.times do |i|
-      row    = Array.new
-      column = Array.new
+      row    = []
+      column = []
 
       @size.times do |j|
         row    << i * @size + j
         column << j * @size + i
-      end    
+      end
       winning_patterns << row
       winning_patterns << column
     end
-    winning_patterns.concat(get_winning_diagonales)
+    winning_patterns.concat(winning_diagonales)
   end
 
-  def get_winning_diagonales
-    winning_diagonales = Array.new
-    diagonale_1        = Array.new
-    diagonale_2        = Array.new
-    
+  def winning_diagonales
+    winning_diagonales = []
+    diagonale_1        = []
+    diagonale_2        = []
+
     @size.times do |i|
       diagonale_1 << i * (@size + 1)
       diagonale_2 << (i + 1) * (@size - 1)

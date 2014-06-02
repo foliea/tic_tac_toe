@@ -1,7 +1,7 @@
 class Human
   attr_reader :symbol
 
-  def initialize symbol, input
+  def initialize(symbol, input)
     @symbol = symbol
     @input  = input
   end

@@ -27,29 +27,29 @@ describe Launcher do
     launcher.start
     expect(launcher.play?).to be_true
   end
- 
+
   it 'should run a game until the end' do
-    game = Game.new(Board.new(3), 
+    game = Game.new(Board.new(3),
                     Computer.new(Params::X_SYMBOL),
                     Computer.new(Params::O_SYMBOL))
     launcher.set(game)
-    launcher.stubs(:display)    
+    launcher.stubs(:display)
     launcher.start
     launcher.run
     expect(launcher.play?).to be_false
   end
 
   context 'when displaying' do
-   
+
     it 'should print board' do
-      OutputHelper.stubs(:print_board) 
+      OutputHelper.stubs(:print_board)
       OutputHelper.expects(:print_board).with(launcher.game.board)
       launcher.display
     end
-    
+
     it 'should print state' do
       OutputHelper.stubs(:print_board)
-      OutputHelper.stubs(:print_state) 
+      OutputHelper.stubs(:print_state)
       OutputHelper.expects(:print_state).with(launcher.game.state)
       launcher.display
     end

@@ -15,11 +15,11 @@ describe Board do
     expect(board.to_a.size).to eq(board_total_size)
   end
 
-  it "must not allow outside move" do
+  it 'must not allow outside move' do
     expect(board.move_available?(-1)).to be_false
   end
 
-  it "must not move on non empty square" do
+  it 'must not move on non empty square' do
     board.set('X........')
     expect(board.move_available?(0)).to be_false
     expect(board.move(0, x_symbol)).to be_nil

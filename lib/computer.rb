@@ -14,7 +14,7 @@ class Computer
   end
 
   def find_opponent_symbol
-    (@symbol == Params::X_SYMBOL) ? Params::O_SYMBOL : Params::X_SYMBOL
+    @symbol == Params::X_SYMBOL ? Params::O_SYMBOL : Params::X_SYMBOL
   end
 
   def find_best_move(board)
@@ -24,7 +24,7 @@ class Computer
 
   private
 
-  def minimax(board, symbol, opponent_symbol, alpha = -1.0/0.0, beta = 1.0/0.0, depth = 0)
+  def minimax(board, symbol, opponent_symbol, alpha = -1.0 / 0.0, beta = 1.0 / 0.0, depth = 0)
     best_score = nil
     best_move  = nil
     depth += 1

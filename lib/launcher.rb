@@ -20,8 +20,8 @@ class Launcher
   end
 
   def launch
-    while (answer = ask_for_new_game)
-      case answer
+    while true
+      case ask_for_new_game
       when 'y'
         start
         display

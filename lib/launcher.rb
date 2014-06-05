@@ -21,13 +21,14 @@ class Launcher
 
   def launch
     while true
-      case ask_for_new_game
-      when 'y'
+      answer = ask_for_new_game
+
+      break if answer == 'n'
+
+      if answer == 'y'
         start
         display
         run
-      when 'n'
-        break
       end
     end
   end

@@ -28,6 +28,13 @@ describe Launcher do
     expect(launcher.play?).to be_true
   end
 
+  it 'should be able to play multiple games in a row' do
+    launcher.stubs(:display)
+    launcher.stubs(:ask_for_new_game).returns('y', 'y', 'n')
+    launcher.expects(:run).at_least(2)
+    launcher.launch
+  end
+
   it 'runs a game until the end' do
     game = Game.new(Board.new(3),
                     Computer.new(Params::X_SYMBOL),

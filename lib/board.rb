@@ -32,11 +32,7 @@ class Board
   end
 
   def empty_squares
-    squares = []
-    @grid.each_index do |location|
-      squares << location if move_available?(location)
-    end
-    squares
+    @grid.each_index.select { |i| move_available?(i) } || Array.new
   end
 
   def draw?
@@ -59,7 +55,7 @@ class Board
                   .gsub('X', Params::X_SYMBOL)
                   .gsub('O', Params::O_SYMBOL)
                   .split(//)
-    @grid.map! { |x| (x == '.' ? Params::BLANK_SYMBOL : x) }
+    @grid.map! { |c| (c == '.' ? Params::BLANK_SYMBOL : c) }
   end
 
   def to_a

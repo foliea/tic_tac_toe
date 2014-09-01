@@ -34,4 +34,4 @@ Run first :
 
 Then :
 
-  `rspec`
+  `bundle exec rspec`

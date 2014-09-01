@@ -6,17 +6,17 @@ A Tic Tac Toe Game with unbeatable AI.
 
 Run this command to launch the game from the `/bin` directory :
 
-  `ruby ./tic_tac_toe`
+    ruby ./tic_tac_toe
 
 Follow the instructions then.
 
 ### Board scheme
 
-  1 | 2 | 3
+    1 | 2 | 3
 
-  4 | 5 | 6
+    4 | 5 | 6
 
-  7 | 8 | 9
+    7 | 8 | 9
 
 Player start to play first.
 
@@ -30,8 +30,8 @@ Player will play first after a loss.
 
 Run first :
 
-  `bundle install`
+    bundle install
 
 Then :
 
-  `bundle exec rspec`
+    bundle exec rspec

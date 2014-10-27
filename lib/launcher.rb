@@ -34,7 +34,7 @@ class Launcher
   end
 
   def run
-    while play?
+    while playing?
       play
       display
     end
@@ -44,7 +44,7 @@ class Launcher
     @game.start
   end
 
-  def play?
+  def playing?
     @game.started?
   end
 

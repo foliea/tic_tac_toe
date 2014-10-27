@@ -25,7 +25,7 @@ describe Launcher do
 
   it 'plays if a game is started' do
     launcher.start
-    expect(launcher.play?).to be_true
+    expect(launcher).to be_playing
   end
 
   it 'should be able to play multiple games in a row' do
@@ -43,7 +43,7 @@ describe Launcher do
     launcher.stubs(:display)
     launcher.start
     launcher.run
-    expect(launcher.play?).to be_false
+    expect(launcher).not_to be_playing
   end
 
   context 'when displaying' do

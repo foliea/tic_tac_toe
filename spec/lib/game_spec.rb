@@ -30,7 +30,7 @@ describe Game do
   end
 
   it 'detects if its started' do
-    expect(game.started?).to eq(false)
+    expect(game).not_to be_started
     expect(game.state).to eq(Game::NOT_STARTED)
   end
 
@@ -50,7 +50,7 @@ describe Game do
 
   it 'stops' do
     game.stop
-    expect(game.started?).to eq(false)
+    expect(game).not_to be_started
   end
 
   context 'when game is over' do
@@ -58,7 +58,7 @@ describe Game do
     it 'should stop' do
       game.stubs(:winner).returns(x_symbol)
       game.play
-      expect(game.started?).to be_false
+      expect(game).not_to be_started
     end
   end
 

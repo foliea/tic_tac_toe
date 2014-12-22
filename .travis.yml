@@ -4,7 +4,7 @@ rvm:
 
 script: bundle exec rspec
 
-# Use docker build
+# Use docker travis worker
 sudo: false
 
 cache: bundler

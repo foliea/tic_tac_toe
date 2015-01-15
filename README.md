@@ -20,19 +20,19 @@ Follow the instructions then.
 
     7 | 8 | 9
 
-Player start to play first.
+Human player starts first.
 
 Then :
 
 It will switch players after a draw.
 
-Player will play first after a loss.
+Human player will play first after a loss.
 
 ### Tests
-Run first :
+Install dependencies:
 
     bundle install
 
-Then :
+Run:
 
     bundle exec rspec

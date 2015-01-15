@@ -6,7 +6,7 @@
 A Tic Tac Toe Game with unbeatable AI.
 
 ## Usage
-Run this command to launch the game from the `root` directory :
+Run this command to launch the game from the `root` directory:
 
     ruby bin/tic_tac_toe
 

@@ -22,11 +22,11 @@ Follow the instructions then.
 
 Human player starts first.
 
-Then :
+Then:
 
-It will switch players after a draw.
+* It will switch players after a draw.
 
-Human player will play first after a loss.
+* Human player will play first after a loss.
 
 ### Tests
 Install dependencies:

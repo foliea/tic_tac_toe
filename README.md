@@ -8,7 +8,7 @@ A Tic Tac Toe Game with unbeatable AI.
 ## Usage
 Run this command to launch the game from the `/bin` directory :
 
-    ruby tic_tac_toe
+    ruby bin/tic_tac_toe
 
 Follow the instructions then.
 

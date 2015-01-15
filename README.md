@@ -5,9 +5,10 @@
 
 A Tic Tac Toe Game with unbeatable AI.
 
+## Usage
 Run this command to launch the game from the `/bin` directory :
 
-    ruby ./tic_tac_toe
+    ruby tic_tac_toe
 
 Follow the instructions then.
 
@@ -28,7 +29,6 @@ It will switch players after a draw.
 Player will play first after a loss.
 
 ### Tests
-
 Run first :
 
     bundle install

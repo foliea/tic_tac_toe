@@ -7,6 +7,9 @@ rvm:
 
 script: bundle exec rspec
 
+after_success:
+  - coveralls
+
 # Use docker travis worker
 sudo: false
 

@@ -1,7 +1,7 @@
 ## Tic Tac Toe
 [![Build Status](https://travis-ci.org/folieadrien/tic_tac_toe.svg)](https://travis-ci.org/folieadrien/tic_tac_toe)
 [![Code Climate](https://codeclimate.com/github/folieadrien/tic_tac_toe.png)](https://codeclimate.com/github/folieadrien/tic_tac_toe)
-[![Coverage Status](https://coveralls.io/repos/folieadrien/tic_tac_toe/badge.png?branch=master)](https://coveralls.io/r/folieadrien/tic_tac_toe?branch=master)
+[![Coverage Status](https://coveralls.io/repos/folieadrien/tic_tac_toe/badge.svg?branch=master)](https://coveralls.io/r/folieadrien/tic_tac_toe?branch=master)
 
 A Tic Tac Toe Game with unbeatable AI.
 

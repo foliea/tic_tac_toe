@@ -5,10 +5,7 @@ rvm:
   - 2.1.5
   - 2.2.0
 
-script: bundle exec rspec
-
-after_success:
-  - coveralls
+script: bundle exec coveralls push
 
 # Use docker travis worker
 sudo: false

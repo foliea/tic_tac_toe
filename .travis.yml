@@ -6,6 +6,9 @@ rvm:
   - 2.2.0
 
 script: bundle exec rspec
+addons:
+  code_climate:
+    repo_token: $CODECLIMATE_REPO_TOKEN
 
 # Use docker travis worker
 sudo: false

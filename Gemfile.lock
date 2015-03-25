@@ -29,6 +29,6 @@ PLATFORMS
 
 DEPENDENCIES
   codeclimate-test-reporter
-  mocha (~> 1.0.0)
-  rake (~> 10.3.2)
-  rspec (~> 2.14.1)
+  mocha (~> 1.0)
+  rake (~> 10.3)
+  rspec (~> 2.14)

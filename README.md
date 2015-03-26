@@ -35,4 +35,4 @@ Install dependencies:
 
 Run:
 
-    bundle exec rspec
+    bundle exec rake

@@ -74,8 +74,7 @@ class Computer
   def get_score(board)
     return 1 if board.win?(@symbol)
     return -1 if board.win?(@opponent_symbol)
-      0
-    end
+    0
   end
 
   def max_depth(board)

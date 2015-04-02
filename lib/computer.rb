@@ -72,11 +72,8 @@ class Computer
   end
 
   def get_score(board)
-    if board.win?(@symbol)
-      1
-    elsif board.win?(@opponent_symbol)
-      -1
-    else
+    return 1 if board.win?(@symbol)
+    return -1 if board.win?(@opponent_symbol)
       0
     end
   end

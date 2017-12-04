@@ -1,8 +1,7 @@
 ## Tic Tac Toe
 [![Build Status](https://travis-ci.org/foliea/tic_tac_toe.svg)](https://travis-ci.org/foliea/tic_tac_toe)
-[![Code Climate](https://codeclimate.com/github/foliea/tic_tac_toe.png)](https://codeclimate.com/github/foliea/tic_tac_toe)
-[![Test Coverage](https://codeclimate.com/github/foliea/tic_tac_toe/badges/coverage.svg)](https://codeclimate.com/github/foliea/tic_tac_toe)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/a63699b495fff3e18420/maintainability)](https://codeclimate.com/github/foliea/tic_tac_toe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a63699b495fff3e18420/test_coverage)](https://codeclimate.com/github/foliea/tic_tac_toe/test_coverage)
 A Tic Tac Toe Game with unbeatable AI.
 
 ## Usage
